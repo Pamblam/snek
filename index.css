@@ -1,0 +1,59 @@
+:root {
+  --bg-color: #395C5B;
+  --bg-end-color: #643636;
+  --bg-start-color: #517952;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  font-family: 'Overpass Mono', monospace;
+
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, var(--bg-color) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ffffff 0%, var(--bg-color) 100%); /* q-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ffffff 0%, var(--bg-color) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='var(--bg-color)',GradientType=0 ); /* IE6-9 */
+
+  overflow: hidden; /* non scrollable */
+}
+
+body.started {
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, var(--bg-start-color) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ffffff 0%, var(--bg-start-color) 100%); /* q-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ffffff 0%, var(--bg-start-color) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='var(--bg-start-color)',GradientType=0 ); /* IE6-9 */
+}
+
+body.finished {
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, var(--bg-endcolor) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ffffff 0%, var(--bg-end-color) 100%); /* q-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ffffff 0%, var(--bg-end-color) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='var(--bg-end-color)',GradientType=0 ); /* IE6-9 */
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+  padding-top: 50px;
+}
+
+canvas {
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  background: white;
+}
+
+h1 {
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-top: 0;
+}
+
+#out {
+  border-bottom: 1px solid black;
+}
