@@ -133,3 +133,12 @@ document.addEventListener('keydown', function(e){
 		case 32: toggleGame(); break;
 	}
 });
+
+document.getElementById('resolution').addEventListener('change', function() {
+	var selectedVal = document.getElementById('resolution').value.split('/');
+	var canvas = document.querySelector('canvas')
+	var canvasHeight = canvas.height;
+
+	canvas.height = selectedVal[0] === 'fullscreen' ? window.innerHeight - document.documentElement.offsetHeight + canvasHeight  : selectedVal[0];
+	canvas.width = selectedVal[0] === 'fullscreen' ? document.body.clientWidth : selectedVal[1];
+})
