@@ -30,7 +30,9 @@ function draw(){
 		ctx.moveTo(snek.segments[i].start.x, snek.segments[i].start.y);
 		ctx.lineTo(snek.segments[i].end.x, snek.segments[i].end.y);
 	}
+	ctx.strokeStyle="#00C800"
 	ctx.stroke();
+	ctx.fillStyle="#C80000"
 	ctx.fillRect(food.x, food.y, 2, 2);
 }
 
@@ -42,7 +44,7 @@ function startGame(){
 		snek.move();
 		if(isCollidedWithEdgeOrSelf()){
 			gameover = true;
-			document.getElementById('out').innerHTML = 'gameover, your score is ' + snek.getLength();
+			document.getElementById('out').innerHTML = '<font face="courier" style="color: rgb(0, 200, 0); font-size: 22px">Your game is over. You scored <b>' + snek.getLength() + "</b> points.</font>";
 			stopGame();
 		}else if(isPointCollidedWithEdgeOrSelf(food)){
 			food = newRandomPoint();
