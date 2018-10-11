@@ -37,11 +37,14 @@ function draw(){
 function startGame(){
 	if(gameStarted || gameover) return;
 	gameStarted = true;
+  document.body.classList.add('started');
 	int = setInterval(()=>{
 		draw();
 		snek.move();
 		if(isCollidedWithEdgeOrSelf()){
 			gameover = true;
+      document.body.classList.remove('started');
+      document.body.classList.add('finished');
 			document.getElementById('out').innerHTML = 'gameover, your score is ' + snek.getLength();
 			stopGame();
 		}else if(isPointCollidedWithEdgeOrSelf(food)){
