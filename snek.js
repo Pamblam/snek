@@ -207,9 +207,9 @@ function loadTop15(){
 	var list = document.getElementById('scores');
 	var markup_buffer = [];
 	ajax({action:'getTop',results:15,game:'snek'}).then(res=>{
-		res.data.forEach(score=>{ 
+		res.data.forEach(score=>{
 			if(lowest_in_top === false || lowest_in_top > score.score) lowest_in_top = score.score;
-			markup_buffer.push(`<li>${score.username} (${score.score}pts)</li>`); 
+			markup_buffer.push(`<li>${score.username} (${score.score}pts)</li>`);
 		});
 		list.innerHTML = markup_buffer.join('');
 	});
@@ -242,7 +242,7 @@ for (var i=0; i<document.getElementById('resolution').options.length; i++){
 	var size = document.getElementById('resolution').options[i].value.split("/");
 	if (parseInt(size[1],10) > window.innerWidth || parseInt(size[0],10) > window.innerHeight){
 		document.getElementById('resolution').remove(i);
-		i--;	
+		i--;
 	}
 }
 
@@ -253,3 +253,12 @@ document.getElementById('resolution').addEventListener('change', function() {
 	canvas.height = selectedVal[0] === 'fullscreen' ? window.innerHeight - document.documentElement.offsetHeight + canvasHeight  : selectedVal[0];
 	canvas.width = selectedVal[0] === 'fullscreen' ? document.body.clientWidth : selectedVal[1];
 })
+
+document.getElementById('btn-toggle-hide').addEventListener('click', function() {
+	if(document.getElementById('scores').style.display == 'none') {
+		document.getElementById('scores').style.display = 'block';
+	}
+	else {
+		document.getElementById('scores').style.display = 'none';
+	}
+});
