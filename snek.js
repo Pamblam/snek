@@ -224,6 +224,15 @@ function ajax(params){
 if(!player_name)getPlayerName();
 else showGame();
 
+
+for (var i=0; i<document.getElementById('resolution').options.length; i++){
+	var size = document.getElementById('resolution').options[i].value.split("/");
+	if (parseInt(size[1],10) > window.innerWidth || parseInt(size[0],10) > window.innerHeight){
+		document.getElementById('resolution').remove(i);
+		i--;	
+	}
+}
+
 document.getElementById('resolution').addEventListener('change', function() {
 	var selectedVal = document.getElementById('resolution').value.split('/');
 	var canvas = document.querySelector('canvas')
