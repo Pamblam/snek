@@ -111,8 +111,15 @@ function stopGame(){
 }
 
 function toggleGame(){
-	if(!gameStarted) startGame();
-	else stopGame();
+	var resolution = document.getElementById("resolution");
+	if(!gameStarted) {
+		startGame();
+		resolution.classList.add("hidden");
+	}
+	else {
+		stopGame();
+		resolution.classList.remove("hidden");
+	}
 }
 
 function isPointCollidedWithEdgeOrSelf(point){
