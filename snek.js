@@ -26,12 +26,13 @@ function draw(){
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	if(!food) food = newRandomPoint();
 	ctx.beginPath();
+	ctx.lineWidth = snek.width;
 	for(var i=0; i<snek.segments.length; i++){
 		ctx.moveTo(snek.segments[i].start.x, snek.segments[i].start.y);
 		ctx.lineTo(snek.segments[i].end.x, snek.segments[i].end.y);
 	}
 	ctx.stroke();
-	ctx.fillRect(food.x, food.y, 2, 2);
+	ctx.fillRect(food.x, food.y, snek.width, snek.width);
 }
 
 function startGame(){
@@ -74,7 +75,7 @@ function toggleGame(){
 function isPointCollidedWithEdgeOrSelf(point){
 	var lines = edges.concat(snek.segments);
 	for(var i=0; i<lines.length; i++){
-		if(isPointTouchingLine(point, lines[i])) return true;
+		if(isPointTouchingLine(point, lines[i], snek.width)) return true;
 	}
 	return false;
 }
@@ -88,8 +89,9 @@ function isCollidedWithEdgeOrSelf(){
 	return false;
 }
 
-function isPointTouchingLine(point, line) {
-	return pointToLineDistance(point, line) === 0;
+function isPointTouchingLine(point, line, tolerance = 0) {
+	var distance = pointToLineDistance(point, line);
+	return distance >= (0 - tolerance) && distance <= tolerance;
 }
 
 function pointToLineDistance(point, line) {
