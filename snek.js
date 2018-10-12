@@ -37,6 +37,7 @@ function newRandomPoint(){
 }
 
 function draw(){
+    let tomatoColor = "tomato";
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	if(!food) food = newRandomPoint();
 	ctx.beginPath();
@@ -47,8 +48,10 @@ function draw(){
 	}
 	ctx.strokeStyle = '#795548';
 	ctx.stroke();
+    ctx.strokeStyle = snek.color;
 	ctx.font = 'bold 3px Calibri';
 	ctx.fillText("🍅", food.x, food.y);
+    ctx.fillStyle = tomatoColor;
 	// ctx.fillRect(food.x, food.y, snek.width, snek.width);
 }
 
@@ -75,6 +78,9 @@ function mainLoop(){
 function gameOver(){
 	var score = snek.getLength();
 	displayMessage('gameover, your score is ' + snek.getLength()+".");
+
+	document.getElementById("btn-restart").classList.remove("hide");
+
 	ajax({action:'addScore',username:player_name,score:score,game:'snek'}).then(res=>{
 		if(top_score && score > top_score){
 			localStorage.getItem('top_score', score);
@@ -112,8 +118,15 @@ function stopGame(){
 }
 
 function toggleGame(){
-	if(!gameStarted) startGame();
-	else stopGame();
+	var resolution = document.getElementById("resolution");
+	if(!gameStarted) {
+		startGame();
+		resolution.classList.add("hidden");
+	}
+	else {
+		stopGame();
+		resolution.classList.remove("hidden");
+	}
 }
 
 function isPointCollidedWithEdgeOrSelf(point){
