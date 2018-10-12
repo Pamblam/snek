@@ -2,7 +2,6 @@
 
 class Snek{
 	constructor(){
-		this.speed = 1;
 		this.length = 40;
 		this.width = 3;
 		this.segments = [
@@ -12,8 +11,8 @@ class Snek{
 	}
 	
 	move(){
-		this.addToHead(this.speed);
-		this.removeFromTail(this.speed);
+		this.addToHead(1);
+		this.removeFromTail(1);
 	}
 	
 	getLength(){
@@ -48,9 +47,21 @@ class Snek{
 	
 	removeFromTail(len){
 		var l = this.segments.length-1;
+		var lastSegmentLength = this.getSegLen(l);
+		if(lastSegmentLength <= len){
+			len -= lastSegmentLength;
+			this.segments.pop();
+			if(!len) return;
+			l--;
+		}
 		this.alterSegmentLength(l, 'end', len);
 		var seg = this.segments[l];
-		if(seg.start.x === seg.end.x && seg.start.y === seg.end.y) this.segments.pop();
+	}
+	
+	getSegLen(idx){
+		var a = this.segments[idx].start.x - this.segments[idx].end.x;
+		var b = this.segments[idx].start.y - this.segments[idx].end.y;
+		return Math.sqrt(a * a + b * b);
 	}
 	
 	addToTail(len){
