@@ -46,6 +46,7 @@ function draw(){
 		ctx.moveTo(snek.segments[i].start.x, snek.segments[i].start.y);
 		ctx.lineTo(snek.segments[i].end.x, snek.segments[i].end.y);
 	}
+	ctx.strokeStyle = '#795548';
 	ctx.stroke();
     ctx.strokeStyle = snek.color;
 	ctx.font = 'bold 3px Calibri';

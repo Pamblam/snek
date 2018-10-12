@@ -37,4 +37,5 @@ If you [register for Hacktoberfest](https://hacktoberfest.digitalocean.com/sign_
  - Mobeen Abdullah ([mobeenabdullah](https://github.com/mobeenabdullah))
  - Eddie Ornelas (https://github.com/ornelasEduardo)
  - Bruno Nakayabu ([BrNaka](https://github.com/BrNaka))
+ - Jaqueline Botaro ([JaqueLB](https://github.com/JaqueLB))
  - Jannis Portmann ([thisfro](https://github.com/thisfro))
