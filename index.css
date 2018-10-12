@@ -90,3 +90,17 @@ h1 {
   border-bottom-right-radius: 5px;
   cursor: pointer;
 }
+
+#btn-restart {
+  padding: 1.5em;
+  width: 100px;
+  background: #0984e3;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.3);
+}
+
+.hide {
+  display: none;
+}

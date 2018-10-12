@@ -74,6 +74,9 @@ function mainLoop(){
 function gameOver(){
 	var score = snek.getLength();
 	displayMessage('gameover, your score is ' + snek.getLength()+".");
+
+	document.getElementById("btn-restart").classList.remove("hide");
+
 	ajax({action:'addScore',username:player_name,score:score,game:'snek'}).then(res=>{
 		if(top_score && score > top_score){
 			localStorage.getItem('top_score', score);
