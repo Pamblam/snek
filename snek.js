@@ -206,7 +206,7 @@ function ajax(params){
 			   done(JSON.parse(xhttp.responseText));
 			}
 		};
-		xhttp.open("GET", "http://pamblam.com/scoreboard/?"+qs.join('&'), true);
+		xhttp.open("GET", "https://pamblam.com/scoreboard/?"+qs.join('&'), true);
 		xhttp.send();
 	});
 }
