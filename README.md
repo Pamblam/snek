@@ -31,3 +31,4 @@ If you [register for Hacktoberfest](https://hacktoberfest.digitalocean.com/sign_
  - David Quan ([David-Quan00](https://github.com/David-Quan00))
  - Viswa Sai ([visvxplore](https://github.com/visvxplore))
  - Michał Krychniak ([KauczukoweJajo](https://github.com/KauczukoweJajo))
+ - Henrique Melanda ([hjdesigner](https://github.com/hjdesigner/))
