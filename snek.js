@@ -256,11 +256,9 @@ document.getElementById('resolution').addEventListener('change', function() {
 
 document.getElementById('btn-toggle-hide').addEventListener('click', function() {
 	if(document.getElementById('scores').style.display == 'none') {
-		console.log('Shown');
 		document.getElementById('scores').style.display = 'block';
 	}
 	else {
-		console.log('Hidden');
 		document.getElementById('scores').style.display = 'none';
 	}
 });
