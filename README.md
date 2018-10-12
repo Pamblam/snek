@@ -33,3 +33,4 @@ If you [register for Hacktoberfest](https://hacktoberfest.digitalocean.com/sign_
  - Michał Krychniak ([KauczukoweJajo](https://github.com/KauczukoweJajo))
  - İlker IŞIK ([necrashter](https://github.com/necrashter))
  - Derek Willingham([DirtySoc](https://github.com/dirtysoc))
+ - Jaqueline Botaro ([JaqueLB](https://github.com/JaqueLB))
