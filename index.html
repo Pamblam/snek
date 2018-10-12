@@ -10,23 +10,35 @@
 	<body>
 		<div class="container">
 			<h1 class="title">SNEK</h1>
-			<p class="subtitle">Spacebar to start. Arrow keys to steer. Eat the tiny dots but don't run into the walls or yourself.</p>
-      <select name="resolution" id="resolution">
-        <option value="400/400">400x400</option>
-        <option value="480/720">480x720</option>
-        <option value="600/600">600x600</option>
-        <option value="800/600">800x600</option>
-        <option value="800/800">800x800</option>
-        <option value="800/1000">800x1000</option>
-        <option value="720/1028">720x1028</option>
-        <option value="1080/1920">1080x1920</option>
-        <option value="fullscreen">Window size</option>
-      </select><br>
-      <br>
-			<div class="canvas-container">
-				<canvas id="canvas"></canvas>
+			<div id="game">
+				<p class="subtitle">Spacebar to start. Arrow keys to steer. Eat the tiny tomatoes but don't run into the walls or yourself.</p>
+				<select name="resolution" id="resolution">
+					<option value="400/400">400x400</option>
+					<option value="480/720">480x720</option>
+					<option value="600/600">600x600</option>
+					<option value="800/600">800x600</option>
+					<option value="800/800">800x800</option>
+					<option value="800/1000">800x1000</option>
+					<option value="720/1028">720x1028</option>
+					<option value="1080/1920">1080x1920</option>
+					<option value="fullscreen">Window size</option>
+				</select><br>
+				<br>
+				<div class="canvas-container">
+					<canvas id="canvas"></canvas>
+				</div>
+				<p class='out-text'><span id='out'></span></p>
+				<p class="subtitle">Top Scores</p>
+				<ol id="scores"></ol>
 			</div>
-			<p class='out-text'><span id='out'></span></p>
+			<div id="getname">
+				<center>
+					<form id="nameform">
+						<p class="subtitle">Enter your name.</p>
+						<input id="username" placeholder="username" maxlength="10"><button type="submit">Play</button>
+					</form>
+				</center>
+			</div>
 		</div>
 		<script src="classes.js"></script>
 		<script src="snek.js"></script>

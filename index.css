@@ -57,3 +57,7 @@ h1 {
 #out {
   border-bottom: 1px solid black;
 }
+
+#game, #getname{
+	display: none;
+}
