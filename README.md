@@ -36,3 +36,4 @@ If you [register for Hacktoberfest](https://hacktoberfest.digitalocean.com/sign_
  - Derek Willingham([DirtySoc](https://github.com/dirtysoc))
  - Mobeen Abdullah ([mobeenabdullah](https://github.com/mobeenabdullah))
  - Bruno Nakayabu ([BrNaka](https://github.com/BrNaka))
+ - Jannis Portmann ([thisfro](https://github.com/thisfro))
