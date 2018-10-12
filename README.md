@@ -32,3 +32,4 @@ If you [register for Hacktoberfest](https://hacktoberfest.digitalocean.com/sign_
  - Viswa Sai ([visvxplore](https://github.com/visvxplore))
  - Michał Krychniak ([KauczukoweJajo](https://github.com/KauczukoweJajo))
  - İlker IŞIK ([necrashter](https://github.com/necrashter))
+ - Derek Willingham([DirtySoc](https://github.com/dirtysoc))

@@ -10,6 +10,16 @@ var gameSpeed = 100; // how often the game is redrawn in ms (smaller = faster)
 var player_name = localStorage.getItem('username');
 var top_score = localStorage.getItem('top_score');
 var lowest_in_top = false;
+var resolutionOptions = document.getElementById('resolution').options;
+var screenWidth = window.innerWidth;
+console.log(screenWidth);
+
+for (var i = 0; i < resolutionOptions.length; i++) {
+	var valueWidth = parseFloat(resolutionOptions[i].value.split('/')[1]);
+	if ( valueWidth > screenWidth) {
+		resolutionOptions[i] = null;
+	}
+}
 
 var edges = [
 	{start: {x:0, y:0}, end: {x:canvas.width, y:0}},
@@ -206,7 +216,7 @@ function ajax(params){
 			   done(JSON.parse(xhttp.responseText));
 			}
 		};
-		xhttp.open("GET", "http://pamblam.com/scoreboard/?"+qs.join('&'), true);
+		xhttp.open("GET", "https://pamblam.com/scoreboard/?"+qs.join('&'), true);
 		xhttp.send();
 	});
 }
