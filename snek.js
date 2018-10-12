@@ -33,7 +33,9 @@ function draw(){
 		ctx.lineTo(snek.segments[i].end.x, snek.segments[i].end.y);
 	}
 	ctx.stroke();
-	ctx.fillRect(food.x, food.y, snek.width, snek.width);
+	ctx.font = 'bold 3px Calibri';
+	ctx.fillText("🍅", food.x, food.y);
+	// ctx.fillRect(food.x, food.y, snek.width, snek.width);
 }
 
 function mainLoop(){
