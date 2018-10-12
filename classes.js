@@ -4,6 +4,7 @@ class Snek{
 	constructor(){
 		this.speed = 1;
 		this.length = 40;
+		this.width = 3;
 		this.segments = [
 			new SnekSegment(50, 50, 50, 40, 'D'),
 			new SnekSegment(50, 40, 30, 40, 'R'),
