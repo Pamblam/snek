@@ -6,6 +6,7 @@ var int;
 var gameStarted = false;
 var gameover = false;
 var food;
+var gameSpeed = 100; // how often the game is redrawn in ms (smaller = faster)
 
 var edges = [
 	{start: {x:0, y:0}, end: {x:canvas.width, y:0}},
@@ -35,30 +36,42 @@ function draw(){
 	ctx.fillRect(food.x, food.y, snek.width, snek.width);
 }
 
+function mainLoop(){
+	draw();
+	snek.move();
+	if(isCollidedWithEdgeOrSelf()){
+		gameover = true;
+		document.body.classList.remove('started');
+		document.body.classList.add('finished');
+		displayMessage('gameover, your score is ' + snek.getLength()+".");
+		stopGame();
+	}else if(isPointCollidedWithEdgeOrSelf(food)){
+		food = newRandomPoint();
+		snek.addToTail(1);
+		var len = snek.getLength();
+		if(len%5===0){
+			speedUp();
+			displayMessage("You got a food. Your score is "+ len + " and you got a speed boost...");
+		}else displayMessage("You got a food. Your score is "+ len +".")
+	}
+}
+
+function displayMessage(msg){
+	document.getElementById('out').innerHTML = msg;
+}
+
+function speedUp(){
+	if(gameSpeed < 31) return;
+	gameSpeed -= 3;
+	clearInterval(int);
+	int = setInterval(mainLoop, gameSpeed);
+}
+
 function startGame(){
 	if(gameStarted || gameover) return;
 	gameStarted = true;
-  document.body.classList.add('started');
-	int = setInterval(()=>{
-		draw();
-		snek.move();
-		if(isCollidedWithEdgeOrSelf()){
-			gameover = true;
-      document.body.classList.remove('started');
-      document.body.classList.add('finished');
-			document.getElementById('out').innerHTML = 'gameover, your score is ' + snek.getLength();
-			stopGame();
-		}else if(isPointCollidedWithEdgeOrSelf(food)){
-			food = newRandomPoint();
-			snek.addToTail(2);
-			var len = snek.getLength();
-			var speedups = [38, 46, 54, 62, 70, 78];
-			if(~speedups.indexOf(len)){
-				snek.speed++;
-				document.getElementById('out').innerHTML = "You got a food. Your score is "+ len + " and you got a speed boost...";
-			}else document.getElementById('out').innerHTML = "You got a food. Your score is "+ len;
-		}
-	}, 100);
+	document.body.classList.add('started');
+	int = setInterval(mainLoop, gameSpeed);
 }
 
 function stopGame(){
