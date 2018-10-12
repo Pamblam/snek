@@ -61,3 +61,21 @@ h1 {
 #game, #getname{
 	display: none;
 }
+
+/* Username Form Styling */
+#nameform #username {
+  padding: 10px;
+  border: none;
+  border-top-left-radius: 5px;
+  outline: none;
+  border-bottom-left-radius: 5px;
+}
+#nameform button[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  background: #333;
+  color: #FFF;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+}
