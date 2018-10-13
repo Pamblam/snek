@@ -65,6 +65,12 @@ h1 {
     margin-top: 20px;
 }
 
+.canvas-container{
+  display: grid;
+  justify-items: center;
+  grid-row-gap: 10px;
+}
+
 #out {
     /* border-bottom: 1px solid black; */
     margin: 30px;
@@ -132,3 +138,56 @@ h1 {
 #scores{
     color: #3d494d;
 }
+
+.game-timer{
+  width: 100px;
+  line-height: 20px;
+  height: 20px;
+  background: yellow;
+  display: none;
+  padding: 3px 5px;
+  border: 2px solid #000;
+}
+
+.game-timer.show{
+  display: block;
+}
+
+.game-timer.hightLight{
+  font-weight: bold;
+  color: red;
+}
+  
+@media screen and (min-width: 425px){ 
+
+  .rank {
+    display: grid;
+    grid-template-columns: .25fr 1fr .25fr;
+  }
+
+  .rank .subtitle {
+    grid-column: 2;
+  }
+  
+  .rank #scores {
+    grid-column: 2;
+  }
+ }
+
+
+@media screen and (min-width: 768px){
+
+  .rank {
+    grid-template-columns: .5fr 1fr .5fr;
+  }
+
+}
+
+
+@media screen and (min-width: 1024px){
+
+  .rank {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+

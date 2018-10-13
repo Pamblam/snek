@@ -5,6 +5,7 @@ var snek = new Snek();
 var int;
 var gameStarted = false;
 var gameover = false;
+var gameTimer = Timer();
 var food, cherry, cherryTimer;
 var gameSpeed = 100; // how often the game is redrawn in ms (smaller = faster)
 var player_name = localStorage.getItem('username');
@@ -128,6 +129,7 @@ function mainLoop() {
 }
 
 function gameOver() {
+	gameTimer.reset();
 	var score = snek.getLength();
 	displayMessage('gameover, your score is ' + snek.getLength() + ".");
 	document.getElementById("btn-restart").classList.remove("hide");
@@ -161,12 +163,14 @@ function startGame() {
 	gameStarted = true;
 	document.body.classList.add('started');
 	int = setInterval(mainLoop, gameSpeed);
+	gameTimer.start();
 }
 
 function stopGame() {
 	if (!gameStarted)
 		return;
 	gameStarted = false;
+	gameTimer.stop();
 	clearInterval(int);
 }
 
@@ -268,6 +272,10 @@ function showGame() {
 				e.preventDefault();
 				break;
 			case 32:
+				var x = document.activeElement;
+				if (x.id != 'username'){
+					e.preventDefault();
+				}
 				toggleGame();
 				break;
 		}
@@ -351,3 +359,65 @@ if (!player_name)
 else
 	showGame();
 setCanvasSizeOpts();
+
+
+function Timer() {
+	var timerId = null;
+	var hours = 0;
+	var minutes = 0;
+	var seconds = 0
+
+	function startLoop() {
+		timerId = setInterval(function() {
+			seconds = seconds + 1;
+			if(seconds === 60) {
+				minutes = minutes + 1;
+				seconds = 0;
+			}
+
+			if(minutes === 60) {
+				hours = hours + 1;
+				minutes = 0;
+			}
+
+			displayTime();
+		}, 1000);
+	}
+
+	function displayTime(hightLight) {
+		var timing = `${hours} : ${minutes} : ${seconds}`;
+		var timerElem = document.querySelector('.game-timer');
+		if(!timerElem.classList.contains('show')) {
+			timerElem.classList.add('show');
+		}
+		timerElem.classList.remove('hightLight');
+		if(hightLight) {
+			timerElem.classList.add('hightLight');
+		}
+		document.querySelector('.game-timer').innerHTML = timing;
+	}
+
+	function start() {
+		startLoop();
+	}
+
+	function stop() {
+		if(!timerId) return;
+		clearInterval(timerId);
+		displayTime('highlight');
+	}
+
+	function reset() {
+		clearInterval(timerId);
+		timerId = null;
+		hours = 0;
+		minutes = 0;
+		seconds = 0;
+	}
+
+	return {
+		start,
+		stop,
+		reset
+	}
+}
