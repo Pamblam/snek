@@ -319,6 +319,7 @@ function setCanvasSizeOpts() {
 	var res = document.getElementById('resolution');
 	var availableHeight = innerHeight - canvas.getBoundingClientRect().top;
 	var opts = {
+		"300/150": "300x150",
 		"400/400": "400x400",
 		"480/720": "480x720",
 		"600/600": "600x600",
