@@ -268,6 +268,10 @@ function showGame() {
 				e.preventDefault();
 				break;
 			case 32:
+				var x = document.activeElement;
+				if (x.id != 'username'){
+					e.preventDefault();
+				}
 				toggleGame();
 				break;
 		}
