@@ -18,11 +18,12 @@
 				<br>
 				<div class="canvas-container">
 					<canvas id="canvas"></canvas>
+					<div class="game-timer"></div>
 				</div>
 				<p class='out-text'><span id='out'>welcome to snek!</span></p>
 				<button id="btn-restart" class="hide" onClick="location.reload()">Restart</button>
-				<div class="center-scoreBox">
-					<h2>Top Scores</h2>
+				<div class="rank">
+					<p class="subtitle">Top Scores</p>
 					<ol id="scores"></ol>
 				</div>
 			</div>
@@ -32,7 +33,7 @@
 						<p class="subtitle">Enter your name.</p>
 						<div>
 							<input id="username" placeholder="username" maxlength="10">
-							<button style="background-color: white; color: black; border: 2px solid green" type="submit" >Play</button>
+							<button id="btn-start" type="submit" >Play</button>
 						</div>
 					</form>
 				</center>
