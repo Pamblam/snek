@@ -1,7 +1,13 @@
 
 # SNEK
 
-Old snake game written in JS for Hacktoberfest 2018. I threw this together in a few minutes for the sole purpose of contributing real issues for Hacktoberfest. Too many cheap "Add-your-name-to-this-list" issues. Do anything you want with it (or look at the issues) and submit a PR.
+<p align="center">
+<img src='https://i.imgur.com/NlHNmOp.png' />
+</p>
+
+The old snake game written in JS for Hacktoberfest 2018. I threw this together in a few minutes for the sole purpose of contributing real issues for Hacktoberfest and with the help of many great developers we have managed to turn it into a really cool playable game. 
+
+**Please contribute!** Do anything you want with it (or look at the issues) and submit a PR.
 
 **Play the game here: https://pamblam.github.io/snek/**
 
@@ -11,7 +17,7 @@ A few minor guidelines for contributing.
  - Anyone can contribute (almost) anything.
  - Please don't add any libraries.
  - Please use tabs, not spaces, and try to maintain the existing formatting.
- - Please add your name to the contributors list below if you did something.
+ - Please **add your name to the contributors list below** if you did something.
 
 ### How to submit a PR
 
@@ -35,7 +41,15 @@ If you [register for Hacktoberfest](https://hacktoberfest.digitalocean.com/sign_
  - İlker IŞIK ([necrashter](https://github.com/necrashter))
  - Derek Willingham([DirtySoc](https://github.com/dirtysoc))
  - Mobeen Abdullah ([mobeenabdullah](https://github.com/mobeenabdullah))
- - Eddie Ornelas (https://github.com/ornelasEduardo)
+ - Eddie Ornelas ([ornelasEduardo](https://github.com/ornelasEduardo))
  - Bruno Nakayabu ([BrNaka](https://github.com/BrNaka))
  - Jaqueline Botaro ([JaqueLB](https://github.com/JaqueLB))
  - Jannis Portmann ([thisfro](https://github.com/thisfro))
+ - Nikos Dimitrakopoulos ([nikossoftwaredev](https://github.com/nikossoftwaredev))
+ - Martin Splitt ([AVGP](https://github.com/avgp))
+ - Njazi Shehu ([njaaazi](https://github.com/njaaazi))
+ - Bradley ([bradleyasu](https://github.com/bradleyasu))
+ - Steven ([StevenJW](https://github.com/StevenJW))
+ - Nicholas ([nicholasruan](https://github.com/nicholasruan))
+ - Joel Hanson ([Joel-hanson](https://github.com/Joel-hanson))
+
