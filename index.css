@@ -144,8 +144,16 @@ h1 {
   height: 20px;
   background: yellow;
   display: none;
-  padding: 3px 5px;
-  border: 2px solid #000;
+}
+.center-scoreBox {
+  padding: 10px;
+  position: relative;
+  width: 300px;
+  height: auto;
+  background: white;
+  top: 100px;
+  margin: auto;
+  border-radius: 20px;
 }
 
 .game-timer.show{
@@ -189,3 +197,4 @@ h1 {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
