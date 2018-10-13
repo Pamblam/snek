@@ -109,6 +109,7 @@ h1 {
 
 #btn-restart {
     padding: 10px 20px;
+    margin-top: 10px; 
     border: none;
     background: #057356;
     color: #FFF;
@@ -139,11 +140,14 @@ h1 {
 }
 
 .game-timer{
+  padding: 10px;
   width: 100px;
+  margin-bottom: 10px;
   line-height: 20px;
   height: 20px;
   background: yellow;
   display: none;
+  border-radius: 5px;
 }
 .center-scoreBox {
   padding: 10px;
