@@ -68,6 +68,8 @@ h1 {
 #out {
   /* border-bottom: 1px solid black; */
   padding: 5px;
+  width: 80%;
+  display: inline-block;
   border: 2px solid black;
   background-color: yellow;
   text-transform: uppercase;
