@@ -1,13 +1,13 @@
 
 # SNEK
 
-<center>
+<p align="center">
+<img src='https://i.imgur.com/NlHNmOp.png' />
+</p>
 
-![enter image description here](https://i.imgur.com/NlHNmOp.png)
+The old snake game written in JS for Hacktoberfest 2018. I threw this together in a few minutes for the sole purpose of contributing real issues for Hacktoberfest and with the help of many great developers we have managed to turn it into a really cool playable game. 
 
-</center>
-
-Old snake game written in JS for Hacktoberfest 2018. I threw this together in a few minutes for the sole purpose of contributing real issues for Hacktoberfest. Too many cheap "Add-your-name-to-this-list" issues. Do anything you want with it (or look at the issues) and submit a PR.
+**Please contribute!** Do anything you want with it (or look at the issues) and submit a PR.
 
 **Play the game here: https://pamblam.github.io/snek/**
 
@@ -17,7 +17,7 @@ A few minor guidelines for contributing.
  - Anyone can contribute (almost) anything.
  - Please don't add any libraries.
  - Please use tabs, not spaces, and try to maintain the existing formatting.
- - Please add your name to the contributors list below if you did something.
+ - Please **add your name to the contributors list below** if you did something.
 
 ### How to submit a PR
 
