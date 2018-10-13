@@ -51,4 +51,5 @@ If you [register for Hacktoberfest](https://hacktoberfest.digitalocean.com/sign_
  - Bradley ([bradleyasu](https://github.com/bradleyasu))
  - Steven ([StevenJW](https://github.com/StevenJW))
  - Nicholas ([nicholasruan](https://github.com/nicholasruan))
+ - Joel Hanson ([Joel-hanson](https://github.com/Joel-hanson))
 
