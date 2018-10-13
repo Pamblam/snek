@@ -65,6 +65,12 @@ h1 {
   margin-top: 0;
 }
 
+.canvas-container{
+  display: grid;
+  justify-items: center;
+  grid-row-gap: 10px;
+}
+
 #out {
   /* border-bottom: 1px solid black; */
   padding: 5px;
@@ -112,6 +118,25 @@ h1 {
   display: none;
 }
 
+.game-timer{
+  width: 100px;
+  line-height: 20px;
+  height: 20px;
+  background: yellow;
+  display: none;
+  padding: 3px 5px;
+  border: 2px solid #000;
+}
+
+.game-timer.show{
+  display: block;
+}
+
+.game-timer.hightLight{
+  font-weight: bold;
+  color: red;
+}
+  
 @media screen and (min-width: 425px){ 
 
   .rank {
@@ -143,5 +168,4 @@ h1 {
   .rank {
     grid-template-columns: 1fr 1fr 1fr;
   }
-
 }
