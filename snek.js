@@ -123,10 +123,10 @@ function toggleGame(){
 		startGame();
 		resolution.classList.add("hidden");
 	}
-	else {
-		stopGame();
-		resolution.classList.remove("hidden");
-	}
+	// else {
+	// 	stopGame();
+	// 	resolution.classList.remove("hidden");
+	// }
 }
 
 function isPointCollidedWithEdgeOrSelf(point){
