@@ -1,113 +1,134 @@
 :root {
-  --bg-color: #639c91;
-  --bg-end-color: #6d1c1c;
-  --bg-start-color: #4b8b4d;
+    --bg-color: #639c91;
+    --bg-end-color: #9e4c0c;
+    --bg-start-color: #4b8b4d;
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
-  margin: 0;
-  font-family: 'Overpass Mono', monospace;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    font-family: 'Overpass Mono', monospace;
 
-  background: var(--bg-color); /* Old browsers */
-  background-color: var(--bg-color); /* Old browsers */
-  background: -moz-linear-gradient(top, #ffffff 0%, var(--bg-color) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #ffffff 0%, var(--bg-color) 100%); /* q-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #ffffff 0%, var(--bg-color) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='var(--bg-color)',GradientType=0 ); /* IE6-9 */
-	background-repeat: repeat-x;
-  background-color: var(--bg-color);
+    background: var(--bg-color); /* Old browsers */
+    background-color: var(--bg-color); /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 0%, var(--bg-color) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #ffffff 0%, var(--bg-color) 100%); /* q-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #ffffff 0%, var(--bg-color) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='var(--bg-color)', GradientType=0); /* IE6-9 */
+    background-repeat: repeat-x;
+    background-color: var(--bg-color);
 }
 
 body.started {
-  background: #ffffff; /* Old browsers */
-  background: -moz-linear-gradient(top, #ffffff 0%, var(--bg-start-color) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #ffffff 0%, var(--bg-start-color) 100%); /* q-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #ffffff 0%, var(--bg-start-color) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='var(--bg-start-color)',GradientType=0 ); /* IE6-9 */
-	background-repeat: repeat-x;
-  background-color: var(--bg-start-color);
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 0%, var(--bg-start-color) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #ffffff 0%, var(--bg-start-color) 100%); /* q-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #ffffff 0%, var(--bg-start-color) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='var(--bg-start-color)', GradientType=0); /* IE6-9 */
+    background-repeat: repeat-x;
+    background-color: var(--bg-start-color);
 }
 
 body.finished {
-  background: #ffffff; /* Old browsers */
-  background: -moz-linear-gradient(top, #ffffff 0%, var(--bg-endcolor) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #ffffff 0%, var(--bg-end-color) 100%); /* q-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #ffffff 0%, var(--bg-end-color) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='var(--bg-end-color)',GradientType=0 ); /* IE6-9 */
-	background-repeat: repeat-x;
-  background-color: var(--bg-end-color);
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 0%, var(--bg-endcolor) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #ffffff 0%, var(--bg-end-color) 100%); /* q-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #ffffff 0%, var(--bg-end-color) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='var(--bg-end-color)', GradientType=0); /* IE6-9 */
+    background-repeat: repeat-x;
+    background-color: var(--bg-end-color);
 }
 
 .container {
-  margin: auto;
-  text-align: center;
-  padding-top: 50px;
+    margin: auto;
+    text-align: center;
+    padding-top: 50px;
 }
 
 canvas {
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
-  border-radius: 3px;
-  background-color: #b2ff59;
-  background-image:
-    linear-gradient(45deg, #64dd17 25%, transparent 25%),
+    margin: 10px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    background-color: #b2ff59;
+    background-image: linear-gradient(45deg, #64dd17 25%, transparent 25%),
     linear-gradient(135deg, #64dd17 25%, transparent 25%),
     linear-gradient(45deg, transparent 75%, #64dd17 75%),
     linear-gradient(135deg, transparent 75%, #64dd17 75%);
-  background-size: 50px 50px;
-  background-position: 0 0, 25px 0, 25px -25px, 0 25px;
+    background-size: 50px 50px;
+    background-position: 0 0, 25px 0, 25px -25px, 0 25px;
 }
 
 h1 {
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  margin-top: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-top: 20px;
 }
 
 #out {
-  /* border-bottom: 1px solid black; */
-  padding: 5px;
-  border: 2px solid black;
-  background-color: yellow;
-  text-transform: uppercase;
-  font-size: larger;
-  font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif
+    /* border-bottom: 1px solid black; */
+    margin: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    color: #057356;
+    background:rgba(255,129,0,0.9);
+    text-transform: uppercase;
+    font-family: 'Overpass Mono', monospace;
+    font-size: larger;
+    font-weight: bold;
+
 }
 
-#game, #getname, .hidden{
-	display: none;
+#game, #getname, .hidden {
+    display: none;
 }
 
 /* Username Form Styling */
 #nameform #username {
-  padding: 10px;
-  border: none;
-  border-top-left-radius: 5px;
-  outline: none;
-  border-bottom-left-radius: 5px;
+    padding: 10px;
+    border: none;
+    border-top-left-radius: 5px;
+    outline: none;
+    border-bottom-left-radius: 5px;
 }
-#nameform button[type="submit"] {
-  padding: 10px 20px;
-  border: none;
-  background: #333;
-  color: #FFF;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  cursor: pointer;
+
+#btn-start {
+    padding: 10px 20px;
+    border: none;
+    background: #057356;
+    color: #FFF;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
 }
 
 #btn-restart {
-  padding: 1.5em;
-  width: 100px;
-  background: #0984e3;
-  color: white;
-  border-radius: 5px;
-  border: none;
-  box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.3);
+    padding: 10px 20px;
+    border: none;
+    background: #057356;
+    color: #FFF;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .hide {
-  display: none;
+    display: none;
+}
+
+#resolution {
+    padding: 10px 20px;
+    border: none;
+    background: #057356;
+    color: #FFF;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.subtitle{
+    margin:20px auto;
+    text-align: center;
+    width: 70%;
+
+}
+#scores{
+    color: #3d494d;
 }
