@@ -210,7 +210,11 @@ function loadTop15(){
 	ajax({action:'getTop',results:15,game:'snek'}).then(res=>{
 		res.data.forEach(score=>{
 			if(lowest_in_top === false || lowest_in_top > score.score) lowest_in_top = score.score;
-			markup_buffer.push(`<li>${score.username} (${score.score}pts)</li>`);
+			markup_buffer.push(`
+				<tr>
+					<td>${score.username}</td>
+					<td> (${score.score}pts)</td>
+				</tr>`);
 		});
 		list.innerHTML = markup_buffer.join('');
 	});
@@ -256,10 +260,10 @@ document.getElementById('resolution').addEventListener('change', function() {
 })
 
 document.getElementById('btn-toggle-hide').addEventListener('click', function() {
-	if(document.getElementById('scores').style.display == 'none') {
-		document.getElementById('scores').style.display = 'block';
+	if(document.getElementById('costumTable').style.display == 'none') {
+		document.getElementById('costumTable').style.display = 'inline-block';
 	}
 	else {
-		document.getElementById('scores').style.display = 'none';
+		document.getElementById('costumTable').style.display = 'none';
 	}
 });
