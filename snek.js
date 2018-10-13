@@ -14,6 +14,28 @@ var lowest_in_top = false;
 var foodSize = 15;
 var snekHead = new Image();
 var cherryImg = new Image();
+var modalMessage = '';
+var modal = document.getElementById("modal");
+var span = document.getElementsByClassName("close")[0];
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+function showModal(message) {
+	addModalMessage(message);
+	modal.style.display = "block";
+}
+
+function closeModal() {
+	modal.style.display = "none";
+}
+
+function addModalMessage(message) {
+	document.getElementById("message-modal").textContent = message
+}
 
 function edges() {
 	return [
@@ -136,11 +158,11 @@ function gameOver() {
 	ajax({action: 'addScore', username: player_name, score: score, game: 'snek'}).then(res => {
 		if (top_score && score > top_score) {
 			localStorage.getItem('top_score', score);
-			alert("You beat your personal top score!");
+			showModal("You beat your personal top score!");
 		}
 		if (score > lowest_in_top) {
 			loadTop15();
-			alert("You made it into the top 15!");
+			showModal("You made it into the top 15!");
 		}
 	});
 }
@@ -239,11 +261,15 @@ function getPlayerName() {
 	document.getElementById('getname').style.display = "block";
 	document.getElementById('game').style.display = "none";
 	document.getElementById("nameform").addEventListener('submit', function (e) {
+		e.preventDefault();
 		e = e || window.event;
 		player_name = document.getElementById("username").value;
-		if (player_name.length > 10 || player_name.length < 2)
-			return alert("Username should be between 2 and 10 chars.");
-		localStorage.setItem('username', player_name);
+		if (player_name.length > 10 || player_name.length < 2) {
+			showModal("Username should be between 2 and 10 chars.");
+		} else {
+			window.location.reload()
+			localStorage.setItem('username', player_name);
+		}
 	});
 }
 
@@ -357,10 +383,9 @@ snekHead.src = 'snek_head.png';
 addEventListener('resize', setCanvasSizeOpts);
 if (!player_name)
 	getPlayerName();
-else
+else 
 	showGame();
 setCanvasSizeOpts();
-
 
 function Timer() {
 	var timerId = null;
