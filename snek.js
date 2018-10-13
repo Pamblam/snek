@@ -179,18 +179,10 @@ function toggleGame() {
 	if (!gameStarted) {
 		startGame();
 		resolution.classList.add("hidden");
-<<<<<<< HEAD
-	}
-	else {
-		stopGame();
-		resolution.classList.remove("hidden");
-	}
-=======
 	} else {
 		stopGame();
 		resolution.classList.remove("hidden");
 	}
->>>>>>> cbe6c1f5da88a6d27f8b0280fcfb2b17be8d3b88
 }
 
 function isPointCollidedWithEdgeOrSelf(point) {
@@ -293,22 +285,11 @@ function showGame() {
 function loadTop15() {
 	var list = document.getElementById('scores');
 	var markup_buffer = [];
-<<<<<<< HEAD
-	ajax({action:'getTop',results:15,game:'snek'}).then(res=>{
-		res.data.forEach(score=>{
-			if(lowest_in_top === false || lowest_in_top > score.score) lowest_in_top = score.score;
-			markup_buffer.push(`
-				<tr>
-					<td>${score.username}</td>
-					<td> (${score.score}pts)</td>
-				</tr>`);
-=======
 	ajax({action: 'getTop', results: 15, game: 'snek'}).then(res => {
 		res.data.forEach(score => {
 			if (lowest_in_top === false || lowest_in_top > score.score)
 				lowest_in_top = score.score;
 			markup_buffer.push(`<li>${score.username} (${score.score}pts)</li>`);
->>>>>>> cbe6c1f5da88a6d27f8b0280fcfb2b17be8d3b88
 		});
 		list.innerHTML = markup_buffer.join('');
 	});
@@ -371,16 +352,6 @@ function resizeCanvas() {
 	canvas.width = w === 'fullscreen' ? innerWidth - 40 : w;
 }
 
-<<<<<<< HEAD
-document.getElementById('btn-toggle-hide').addEventListener('click', function() {
-	if(document.getElementById('costumTable').style.display == 'none') {
-		document.getElementById('costumTable').style.display = 'inline-block';
-	}
-	else {
-		document.getElementById('costumTable').style.display = 'none';
-	}
-});
-=======
 cherryImg.src = 'cherries.png';
 snekHead.src = 'snek_head.png';
 addEventListener('resize', setCanvasSizeOpts);
@@ -389,9 +360,6 @@ if (!player_name)
 else
 	showGame();
 setCanvasSizeOpts();
-<<<<<<< HEAD
->>>>>>> cbe6c1f5da88a6d27f8b0280fcfb2b17be8d3b88
-=======
 
 
 function Timer() {
@@ -454,4 +422,3 @@ function Timer() {
 		reset
 	}
 }
->>>>>>> bd6786414a77caef1b12f33473aedfdfa90fb7c5
