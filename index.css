@@ -111,3 +111,13 @@ h1 {
 .hide {
   display: none;
 }
+.center-scoreBox {
+  padding: 10px;
+  position: relative;
+  width: 300px;
+  height: auto;
+  background: white;
+  top: 100px;
+  margin: auto;
+  border-radius: 20px;
+}
