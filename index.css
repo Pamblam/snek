@@ -111,3 +111,37 @@ h1 {
 .hide {
   display: none;
 }
+
+@media screen and (min-width: 425px){ 
+
+  .rank {
+    display: grid;
+    grid-template-columns: .25fr 1fr .25fr;
+  }
+
+  .rank .subtitle {
+    grid-column: 2;
+  }
+  
+  .rank #scores {
+    grid-column: 2;
+  }
+ }
+
+
+@media screen and (min-width: 768px){
+
+  .rank {
+    grid-template-columns: .5fr 1fr .5fr;
+  }
+
+}
+
+
+@media screen and (min-width: 1024px){
+
+  .rank {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+}
