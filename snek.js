@@ -268,6 +268,9 @@ function showGame() {
 				e.preventDefault();
 				break;
 			case 32:
+				if (document.getElementById('getname').style.display === "none") {
+					e.preventDefault();
+				}
 				toggleGame();
 				break;
 		}
