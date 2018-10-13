@@ -82,7 +82,6 @@ h1 {
     font-family: 'Overpass Mono', monospace;
     font-size: larger;
     font-weight: bold;
-
 }
 
 #game, #getname, .hidden {
@@ -190,4 +189,3 @@ h1 {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
-
