@@ -40,3 +40,4 @@ If you [register for Hacktoberfest](https://hacktoberfest.digitalocean.com/sign_
  - Jaqueline Botaro ([JaqueLB](https://github.com/JaqueLB))
  - Jannis Portmann ([thisfro](https://github.com/thisfro))
  - Nikos Dimitrakopoulos ((https://github.com/nikossoftwaredev))
+ - Martin Splitt ([AVGP](https://github.com/avgp))
