@@ -54,3 +54,4 @@ If you [register for Hacktoberfest](https://hacktoberfest.digitalocean.com/sign_
  - Joel Hanson ([Joel-hanson](https://github.com/Joel-hanson))
  - Saravanan Ramupillai ([Saravanan Ramupillai](https://github.com/saravanan10393))
  - Kevin Simkanič ([kevinko12323](https://github.com/kevinko12323))
+ - Jared Glaser ([Jared Glaser](https://github.com/jaredglaser))
