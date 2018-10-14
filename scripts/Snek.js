@@ -31,7 +31,10 @@ class Snek{
 			document.getElementById('error').innerHTML = "Invalid move";
 			return;
 		}
-		if((D === 'L' || D === 'R') && (headSeg.direction === 'R' || headSeg.direction === 'L')) return;
+		if((D === 'L' || D === 'R') && (headSeg.direction === 'R' || headSeg.direction === 'L')){
+			document.getElementById('error').innerHTML = "Invalid move";
+			return;
+		}
 		this.segments.unshift(new SnekSegment(headSeg.start.x, headSeg.start.y, headSeg.start.x, headSeg.start.y, D));
 		document.getElementById('error').innerHTML = "";
 	}
