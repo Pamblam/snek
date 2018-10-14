@@ -58,10 +58,7 @@ function setCherryTimer(){
 	}, ms);
 }
 
-function draw() {
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	if (!food) food = newRandomPoint();
-	if (!cherryTimer && !cherry) setCherryTimer();
+function drawSnek(snek){
 	for (var i = 0; i < snek.segments.length; i++) {
 		drawCircle(snek.segments[i].end.x, snek.segments[i].end.y, snek.width / 2);
 		ctx.lineWidth = snek.width;
@@ -78,19 +75,18 @@ function draw() {
 		ctx.stroke();
 	}
 	switch (snek.segments[0].direction) { // img dims: w = 12, h = 18
-		case 'L':
-			drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 90);
-			break;
-		case 'U':
-			drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 180);
-			break;
-		case 'R':
-			drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 270);
-			break;
-		case 'D':
-			drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 0);
-			break;
+		case 'L': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 90); break;
+		case 'U': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 180); break;
+		case 'R': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 270); break;
+		case 'D': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 0); break;
 	}
+}
+
+function draw() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	if (!food) food = newRandomPoint();
+	if (!cherryTimer && !cherry) setCherryTimer();
+	drawSnek(snek);
 	ctx.font = 'bold ' + foodSize + 'px Calibri';
 	ctx.fillText("🍅", food.x, food.y);
 	if(cherry) ctx.drawImage(cherryImg, cherry.x, cherry.y, foodSize+3, foodSize+3);
