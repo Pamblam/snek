@@ -309,13 +309,20 @@ function showGame() {
 }
 
 function loadTop15() {
+	var nrCount = 0;
 	var list = document.getElementById('scores');
 	var markup_buffer = [];
 	ajax({action: 'getTop', results: 15, game: 'snek'}).then(res => {
 		res.data.forEach(score => {
+			nrCount +=1;
 			if (lowest_in_top === false || lowest_in_top > score.score)
 				lowest_in_top = score.score;
-			markup_buffer.push(`<li>${score.username} (${score.score}pts)</li>`);
+			markup_buffer.push(`
+				<tr>
+				<td><i> ${nrCount}</i> </td>
+				<td> ${score.username}  </td>
+				<td> (${score.score}pts) </td>
+				</tr>`);
 		});
 		list.innerHTML = markup_buffer.join('');
 	});
