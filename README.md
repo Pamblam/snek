@@ -95,3 +95,4 @@ If you [register for Hacktoberfest](https://hacktoberfest.digitalocean.com/sign_
  - Kevin Simkanič ([kevinko12323](https://github.com/kevinko12323))
  - Jared Glaser ([Jared Glaser](https://github.com/jaredglaser))
  - WicoGoHome  ([wicogohome](https://github.com/wicogohome))
+ - Kushagra Agarwal  ([kushagra-ag](https://github.com/kushagra-ag))
