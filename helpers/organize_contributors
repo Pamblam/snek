@@ -1,0 +1,129 @@
+#!/usr/bin/env node
+
+/**
+ * Use the Github API to compile a list of contributors and 
+ * put them in the readme in alphabetical order. Must add Github login below 
+ * before running the script. Must run npm install first too.
+ */
+
+const octokit = require('@octokit/rest')();
+const dLoop = require('delayed-loop');
+const fs = require('fs');
+
+var contributors = {};
+var contrib_arr = [];
+var hasResults = true;
+var page = 2;
+
+var auth = octokit.authenticate({
+	type: 'basic',
+	username: 'put your username here',
+	password: 'put your password here'
+});
+
+getAllSortedContributors().then(()=>{
+	fs.readFile('../README.md', 'utf8', function(err, readme){
+		var contStr = "### Contributors\n\n";
+		var begining = readme.substring(0, readme.indexOf(contStr)+contStr.length);
+		contrib_arr.forEach(contrib=>{
+			var fullname = contrib.fullname || contrib.username;
+			begining += ` - ${fullname} ([${contrib.username}](${contrib.url}))`+"\n";
+		});
+		fs.writeFileSync('../README.md', begining);
+	});
+});
+
+function getAllSortedContributors(){
+	return new Promise(done=>{
+		getAllContributors().then(()=>{
+			getContributorsFromReadMe().then(()=>{
+				sortContributors().then(done).catch(done);
+			}).catch(()=>{
+				sortContributors().then(done).catch(done);
+			});
+		}).catch(()=>{
+			getContributorsFromReadMe().then(()=>{
+				sortContributors().then(done).catch(done);
+			}).catch(()=>{
+				sortContributors().then(done).catch(done);
+			});
+		});
+	});
+}
+
+function sortContributors(){
+	return new Promise(done=>{
+		contrib_arr = Object.values(contributors);
+		contrib_arr.sort((a,b)=>{
+			var nameA = (a.fullname || a.username).toUpperCase();
+			var nameB = (b.fullname || b.username).toUpperCase();
+			if (nameA < nameB) return -1;
+			if (nameA > nameB) return 1;
+			return 0;
+		});
+		done();
+	});
+}
+
+function getContributorsFromReadMe(){
+	return new Promise(done=>{
+		fs.readFile('../README.md', 'utf8', function(err, data){
+			if (err) return console.log(err);
+			var re = / - (.+) ?\(\[(.+)\]\((https:\/\/github\.com\/.+)\)\)/;
+			var lines = data.split("\n");
+			lines.forEach(line=>{
+				if(!re.test(line)) return;
+				var m = line.match(re);
+				if(!m || contributors[m[2]]) return;
+				contributors[m[2]] = {
+					url:m[3], 
+					username:m[2], 
+					fullname:m[1]
+				};
+				done();
+			});
+		});
+	});
+}
+
+function getNextContributors(){
+	return new Promise(doneAll=>{
+		octokit.activity.getEventsForRepo({owner:'Pamblam', repo:'snek', page:page, per_page:100}).then(events => {
+			if(!events || !events.data || !events.data.length){
+				hasResults = false;
+				doneAll();
+			}
+			dLoop(events.data, (event, idx, done)=>{
+				if(!event || !event.actor || contributors[event.actor.login]) return done();
+				octokit.users.getForUser({username:event.actor.login}).then(user => {
+					contributors[event.actor.login] = {
+						url:user.data.html_url, 
+						username:user.data.login, 
+						fullname:user.data.name
+					};
+					done();
+				}).catch(()=>{
+					hasResults = false;
+					doneAll();
+				});
+			}).then(doneAll).catch(()=>{
+				hasResults = false;
+				doneAll();
+			});
+		}).catch(()=>{
+			hasResults = false;
+			doneAll();
+		});
+	});
+}
+
+function getAllContributors(){
+	page++;
+	console.log("getting page ", page);
+	return new Promise(done=>{
+		getNextContributors().then(()=>{
+			if(!hasResults) return done();
+			getAllContributors().then(done).catch(done);
+		}).catch(done);
+	});
+}
