@@ -1,8 +1,7 @@
-
-# SNEK
-
 <p align="center">
+<img src='https://i.imgur.com/j95GpFY.png' />
 <img src='https://i.imgur.com/NlHNmOp.png' />
+<hr>
 </p>
 
 The old snake game written in JS for Hacktoberfest 2018. I threw this together in a few minutes for the sole purpose of contributing real issues for Hacktoberfest and with the help of many great developers we have managed to turn it into a really cool playable game. 

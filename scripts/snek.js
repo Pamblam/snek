@@ -385,8 +385,8 @@ function resizeCanvas() {
 	canvas.width = w === 'fullscreen' ? innerWidth - 40 : w;
 }
 
-cherryImg.src = 'cherries.png';
-snekHead.src = 'snek_head.png';
+cherryImg.src = 'images/cherries.png';
+snekHead.src = 'images/snek_head.png';
 addEventListener('resize', setCanvasSizeOpts);
 if (!player_name)
 	getPlayerName();

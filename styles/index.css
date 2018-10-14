@@ -9,7 +9,6 @@ body {
     width: 100vw;
     margin: 0;
     font-family: 'Overpass Mono', monospace;
-
     background: var(--bg-color); /* Old browsers */
     background-color: var(--bg-color); /* Old browsers */
     background: -moz-linear-gradient(top, #ffffff 0%, var(--bg-color) 100%); /* FF3.6-15 */
@@ -52,9 +51,9 @@ canvas {
     border-radius: 3px;
     background-color: #b2ff59;
     background-image: linear-gradient(45deg, #64dd17 25%, transparent 25%),
-    linear-gradient(135deg, #64dd17 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #64dd17 75%),
-    linear-gradient(135deg, transparent 75%, #64dd17 75%);
+		linear-gradient(135deg, #64dd17 25%, transparent 25%),
+		linear-gradient(45deg, transparent 75%, #64dd17 75%),
+		linear-gradient(135deg, transparent 75%, #64dd17 75%);
     background-size: 50px 50px;
     background-position: 0 0, 25px 0, 25px -25px, 0 25px;
 }
@@ -66,13 +65,12 @@ h1 {
 }
 
 .canvas-container{
-  display: grid;
-  justify-items: center;
-  grid-row-gap: 10px;
+	display: grid;
+	justify-items: center;
+	grid-row-gap: 10px;
 }
 
 #out {
-    /* border-bottom: 1px solid black; */
     margin: 30px;
     padding: 20px;
     border-radius: 5px;
@@ -88,13 +86,16 @@ h1 {
     display: none;
 }
 
-/* Username Form Styling */
 #nameform #username {
     padding: 10px;
     border: none;
     border-top-left-radius: 5px;
     outline: none;
     border-bottom-left-radius: 5px;
+}
+
+.logo{
+	max-width: 100%;
 }
 
 #btn-start {
@@ -133,76 +134,71 @@ h1 {
     margin:20px auto;
     text-align: center;
     width: 70%;
-
 }
+
 #scores{
     color: #3d494d;
 }
 
 .game-timer{
-  padding: 10px;
-  width: 100px;
-  margin-bottom: 10px;
-  line-height: 20px;
-  height: 20px;
-  background: yellow;
-  display: none;
-  border-radius: 5px;
+	padding: 10px;
+	width: 100px;
+	margin-bottom: 10px;
+	line-height: 20px;
+	height: 20px;
+	background: yellow;
+	display: none;
+	border-radius: 5px;
 }
+
 .center-scoreBox {
-  padding: 10px;
-  position: relative;
-  width: 300px;
-  height: auto;
-  background: white;
-  top: 100px;
-  margin: auto;
-  border-radius: 20px;
+	padding: 10px;
+	position: relative;
+	width: 300px;
+	height: auto;
+	background: white;
+	top: 100px;
+	margin: auto;
+	border-radius: 20px;
 }
 
 .game-timer.show{
-  display: block;
+	display: block;
 }
 
 .game-timer.hightLight{
-  font-weight: bold;
-  color: red;
+	font-weight: bold;
+	color: red;
 }
-  
+
 @media screen and (min-width: 425px){ 
+	.rank {
+		display: grid;
+		grid-template-columns: .25fr 1fr .25fr;
+	}
 
-  .rank {
-    display: grid;
-    grid-template-columns: .25fr 1fr .25fr;
-  }
+	.rank .subtitle {
+		grid-column: 2;
+	}
 
-  .rank .subtitle {
-    grid-column: 2;
-  }
-  
-  .rank #scores {
-    grid-column: 2;
-  }
- }
+	.rank #scores {
+		grid-column: 2;
+	}
+}
 
 
 @media screen and (min-width: 768px){
-
-  .rank {
-    grid-template-columns: .5fr 1fr .5fr;
-  }
-
+	.rank {
+		grid-template-columns: .5fr 1fr .5fr;
+	}
 }
-
 
 @media screen and (min-width: 1024px){
-
-  .rank {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
+	.rank {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
 }
 
-/* modal css */
 .modal {
     display: none;
     position: fixed;
@@ -240,5 +236,5 @@ h1 {
 }
 
 .message-modal {
-  text-align: center;
+	text-align: center;
 }

@@ -4,19 +4,19 @@
 		<title>snek</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="./index.css">
+		<link rel="stylesheet" href="styles/index.css">
 		<link href="https://fonts.googleapis.com/css?family=Overpass+Mono" rel="stylesheet">
 	</head>
 	<body>
 		<div id="modal" class="modal">
-		  <div class="modal-content">
-		    <span class="close" onClick="closeModal()">&times;</span>
-		    <p id="message-modal" class="message-modal"></p>
-		  </div>
+			<div class="modal-content">
+				<span class="close" onClick="closeModal()">&times;</span>
+				<p id="message-modal" class="message-modal"></p>
+			</div>
 		</div>
 
 		<div class="container">
-			<h1 class="title">SNEK</h1>
+			<img src="https://i.imgur.com/j95GpFY.png" class="logo" />
 			<div id="game">
 				<p class="subtitle">Spacebar to start. Arrow keys to steer. Eat the tiny tomatoes but don't run into the walls or yourself.</p>
 				<select name="resolution" id="resolution">
@@ -29,19 +29,19 @@
 				</div>
 				<p class='out-text'><span id='out'>welcome to snek!</span></p>
 				<button id="btn-restart" class="hide" onClick="location.reload()">Restart</button>
-					<p class="subtitle">Top Scores</p>
-					<center>
-						<table id="costumTable">
-							<thead>
-								<th>Nr</th>
-								<th>Username</th>
-								<th>Scores</th>
-							</thead>
-							<tbody id="scores">
-								
-							</tbody>
-						</table>
-					</center>
+				<p class="subtitle">Top Scores</p>
+				<center>
+					<table id="costumTable">
+						<thead>
+						<th>Nr</th>
+						<th>Username</th>
+						<th>Scores</th>
+						</thead>
+						<tbody id="scores">
+
+						</tbody>
+					</table>
+				</center>
 			</div>
 			<div id="getname">
 				<center>
@@ -55,7 +55,7 @@
 				</center>
 			</div>
 		</div>
-		<script src="classes.js"></script>
-		<script src="snek.js"></script>
+		<script src="scripts/classes.js"></script>
+		<script src="scripts/snek.js"></script>
 	</body>
 </html>
