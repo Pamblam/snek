@@ -27,9 +27,13 @@ class Snek{
 	
 	changeDir(D){
 		var headSeg = this.segments[0];
-		if((D === 'D' || D === 'U') && (headSeg.direction === 'U' || headSeg.direction === 'D')) return;
+		if((D === 'D' || D === 'U') && (headSeg.direction === 'U' || headSeg.direction === 'D')){
+			document.getElementById('error').innerHTML = "Invalid move";
+			return;
+		}
 		if((D === 'L' || D === 'R') && (headSeg.direction === 'R' || headSeg.direction === 'L')) return;
 		this.segments.unshift(new SnekSegment(headSeg.start.x, headSeg.start.y, headSeg.start.x, headSeg.start.y, D));
+		document.getElementById('error').innerHTML = "";
 	}
 	
 	alterSegmentLength(idx, end, len){
