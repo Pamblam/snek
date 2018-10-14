@@ -78,11 +78,11 @@ function drawSnek(snek){
 		case 'L': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 90);
 			document.getElementById('error').innerHTML = "Turning left"; break;
 		case 'U': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 180);
-			document.getElementById('error').innerHTML = "Turning upside"; break;
+			document.getElementById('error').innerHTML = "Moving up"; break;
 		case 'R': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 270);
 			document.getElementById('error').innerHTML = "Turning right"; break;
 		case 'D': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 0);
-			document.getElementById('error').innerHTML = "Turning downside"; break;
+			document.getElementById('error').innerHTML = "Moving down"; break;
 	}
 }
 
