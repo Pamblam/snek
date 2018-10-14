@@ -132,6 +132,7 @@ function mainLoop() {
 		int = setInterval(mainLoop, gameSpeed);
 		displayMessage("You got a temporary speed boost!");
 		setTimeout(()=>{
+			if(gameover) return;
 			gameSpeed += 35;
 			clearInterval(int);
 			int = setInterval(mainLoop, gameSpeed);
