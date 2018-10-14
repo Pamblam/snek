@@ -8,5 +8,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@octokit/rest": "^15.13.1",
+    "delayed-loop": "^1.0.1"
+  }
 }
