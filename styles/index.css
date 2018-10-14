@@ -171,6 +171,11 @@ h1 {
 	color: red;
 }
 
+#error{
+    color: red;
+    font-size: 15px;
+}
+
 @media screen and (min-width: 425px){ 
 	.rank {
 		display: grid;
