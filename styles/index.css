@@ -56,6 +56,7 @@ canvas {
 		linear-gradient(135deg, transparent 75%, #64dd17 75%);
     background-size: 50px 50px;
     background-position: 0 0, 25px 0, 25px -25px, 0 25px;
+    box-shadow: -4px 8px 18px 6px #00000057;
 }
 
 h1 {
