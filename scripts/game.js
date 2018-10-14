@@ -77,9 +77,12 @@ function drawSnek(snek){
 	switch (snek.segments[0].direction) { // img dims: w = 12, h = 18
 		case 'L': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 90);
 			document.getElementById('error').innerHTML = "Turning left"; break;
-		case 'U': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 180); break;
-		case 'R': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 270); break;
-		case 'D': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 0); break;
+		case 'U': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 180);
+			document.getElementById('error').innerHTML = "Moving up"; break;
+		case 'R': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 270);
+			document.getElementById('error').innerHTML = "Turning right"; break;
+		case 'D': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 0);
+			document.getElementById('error').innerHTML = "Moving down"; break;
 	}
 }
 
