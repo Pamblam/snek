@@ -1,7 +1,7 @@
 
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-var sneks = [new Snek()];
+var sneks = [new Snek(), new Snek(true)];
 var int;
 var gameStarted = false;
 var gameover = false;
@@ -188,10 +188,20 @@ function speedUp() {
 	int = setInterval(mainLoop, gameSpeed);
 }
 
+function startBots(){
+	var botInt = setInterval(()=>{
+		if(gameover) clearInterval(botInt);
+		if(!gameStarted) return;
+		sneks.forEach(snek=>{
+			if(snek.isBot) thinkForBot(snek);
+		});
+	},500);
+}
+
 function startGame() {
-	if (gameStarted || gameover)
-		return;
+	if (gameStarted || gameover) return;
 	gameStarted = true;
+	startBots();
 	document.body.classList.add('started');
 	int = setInterval(mainLoop, gameSpeed);
 	gameTimer.start();
@@ -212,6 +222,84 @@ function toggleGame() {
 	} else {
 		stopGame();
 		resolution.classList.remove("hidden");
+	}
+}
+
+function linesIntersect(line1, line2) {
+	var det, gamma, lambda;
+	det = (line1.end.x - line1.start.x) * (line2.end.y - line2.start.y) - (line2.end.x - line2.start.x) * (line1.end.y - line1.start.y);
+	if (det === 0) return false;
+	else {
+		lambda = ((line2.end.y - line2.start.y) * (line2.end.x - line1.start.x) + (line2.start.x - line2.end.x) * (line2.end.y - line1.start.y)) / det;
+		gamma = ((line1.start.y - line1.end.y) * (line2.end.x - line1.start.x) + (line1.end.x - line1.start.x) * (line2.end.y - line1.start.y)) / det;
+		return (0 < lambda && lambda < 1) && (0 < gamma && gamma < 1);
+	}
+}
+
+function isObstructionWithinNPixels(head, direction, pixels){
+	var lines = allLines();
+	switch(direction){
+		case "U": var path = {start:{x:head.x, y:head.y}, end:{x:head.x, y:head.y-pixels}}; break;
+		case "D": var path = {start:{x:head.x, y:head.y}, end:{x:head.x, y:head.y+pixels}}; break;
+		case "L": var path = {start:{x:head.x, y:head.y}, end:{x:head.x-pixels, y:head.y}}; break;
+		case "R": var path = {start:{x:head.x, y:head.y}, end:{x:head.x+pixels, y:head.y}}; break;
+	}
+	var safe = true;
+	for(var i=0; i<lines.length; i++){
+		if(path.start.x === head.x && path.start.y === head.y) continue;
+		if(linesIntersect(lines[0], path)){
+			safe = false;
+			break;
+		}
+	}
+	return safe;
+}
+
+function allLines(){
+	var lines = edges();
+	for(var i=0; i<sneks.length; i++){ lines = lines.concat(sneks[i].segments); }
+	return lines;
+}
+
+function getDirectionToward(head, dest, direction, available_directions){
+	var newDir = false;
+	if(direction === 'U' || direction === 'D'){
+		var d = dest.x > head.x ? 'R' : 'L';
+		if(~available_directions.indexOf(d)) newDir = d;
+	}else{
+		var d = dest.x > head.x ? 'D' : 'U';
+		if(~available_directions.indexOf(d)) newDir = d;
+	}
+	return newDir;
+}
+
+function thinkForBot(snek){
+	var head = snek.segments[0].start;
+	var direction = snek.segments[0].direction;
+	if(isObstructionWithinNPixels(head, direction, 30)){
+		var available_directions = [];
+		if(direction === 'U' || direction === 'D'){
+			if(!isObstructionWithinNPixels(head, 'L', 30)) available_directions.push('L');
+			if(!isObstructionWithinNPixels(head, 'R', 30)) available_directions.push('R');
+		}else{
+			if(!isObstructionWithinNPixels(head, 'U', 30)) available_directions.push('U');
+			if(!isObstructionWithinNPixels(head, 'D', 30)) available_directions.push('D');
+		}
+		var newDir = false;
+		if(snek.botTarget === 'food'){
+			newDir = getDirectionToward(head, food, direction, available_directions);
+			if(newDir === false){
+				snek.botTarget === 'cherry';
+				newDir = getDirectionToward(head, cherry, direction, available_directions);
+			}
+		}else{
+			newDir = getDirectionToward(head, food, direction, available_directions);
+			if(newDir === false){
+				snek.botTarget === 'food';
+				newDir = getDirectionToward(head, cherry, direction, available_directions);
+			}
+		}
+		if(newDir) snek.changeDir(newDir);
 	}
 }
 

@@ -1,9 +1,11 @@
 
 
 class Snek{
-	constructor(){
+	constructor(isBot=false){
 		this.length = 40;
 		this.width = 8;
+		this.isBot = isBot;
+		this.botTarget = 'food';
 		this.segments = [
 			new SnekSegment(50, 50, 50, 40, 'D'),
 			new SnekSegment(50, 40, 30, 40, 'R'),
