@@ -1,7 +1,7 @@
 
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-var snek = new Snek();
+var sneks = [new Snek()];
 var int;
 var gameStarted = false;
 var gameover = false;
@@ -45,7 +45,9 @@ function newRandomPoint() {
 		x: Math.floor(Math.random() * ((canvas.width - 2) - 2 + 1)) + 2,
 		y: Math.floor(Math.random() * ((canvas.height - 2) - 2 + 1)) + 2
 	};
-	return isPointCollidedWithEdgeOrSelf(point) ? newRandomPoint() : point;
+	var safe = true;
+	for(var i=0; i<sneks.length; i++){ { if(isPointCollidedWithEdgeOrSelf(point, sneks[i])) safe = false; break; } }
+	return safe ? point : newRandomPoint() ;
 }
 
 function setCherryTimer(){
@@ -86,7 +88,7 @@ function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	if (!food) food = newRandomPoint();
 	if (!cherryTimer && !cherry) setCherryTimer();
-	drawSnek(snek);
+	sneks.forEach(drawSnek);
 	ctx.font = 'bold ' + foodSize + 'px Calibri';
 	ctx.fillText("🎃", food.x, food.y);
 	if(cherry) ctx.drawImage(cherryImg, cherry.x, cherry.y, foodSize+3, foodSize+3);
@@ -108,16 +110,16 @@ function drawCircle(x, y, rad) {
 	ctx.fill();
 }
 
-function mainLoop() {
-	draw();
+function renderSnek(snek){
+	if(gameover) return;
 	snek.move();
-	if (isCollidedWithEdgeOrSelf()) {
+	if (isCollidedWithEdgeOrSelf(snek)) {
 		gameover = true;
 		document.body.classList.remove('started');
 		document.body.classList.add('finished');
 		gameOver();
 		stopGame();
-	} else if (isPointCollidedWithEdgeOrSelf(food)) {
+	} else if (isPointCollidedWithEdgeOrSelf(food, snek)) {
 		food = newRandomPoint();
 		snek.addToTail(10);
 		var len = snek.getLength();
@@ -125,7 +127,7 @@ function mainLoop() {
 			speedUp();
 			displayMessage("You got a food. Your score is " + len + " and you got a speed boost...");
 		} else displayMessage("You got a food. Your score is " + len + ".")
-	} else if (cherry && isPointCollidedWithEdgeOrSelf(cherry)) {
+	} else if (cherry && isPointCollidedWithEdgeOrSelf(cherry, snek)) {
 		cherry = false;
 		gameSpeed -= 25;
 		clearInterval(int);
@@ -141,10 +143,26 @@ function mainLoop() {
 	}
 }
 
+function mainLoop() {
+	draw();
+	sneks.forEach(renderSnek);
+}
+
 function gameOver() {
 	gameTimer.stop();
-	var score = snek.getLength();
-	displayMessage('gameover, your score is ' + snek.getLength() + ".");
+	var snek = sneks.reduce((acc,cur)=>{ return acc === false ? cur : cur.getLength() > acc.getLength() ? curr : acc}, false);
+	if(sneks.length === 1){
+		displayMessage('gameover, your score is ' + snek.getLength() + ".");
+	}else{
+		if(snek.getLength()>sneks[0].getLength()){
+			displayMessage('gameover, you lose.');
+		}else if(snek.getLength()<sneks[0].getLength()){
+			displayMessage('gameover, you win.');
+		}else{
+			displayMessage('gameover, it\'s a tie.');
+		}
+	}
+	var score = sneks[0].getLength();
 	document.getElementById("btn-restart").classList.remove("hide");
 	ajax({action: 'addScore', username: player_name, score: score, game: 'snek'}).then(res => {
 		if (top_score && score > top_score) {
@@ -180,8 +198,7 @@ function startGame() {
 }
 
 function stopGame() {
-	if (!gameStarted)
-		return;
+	if (!gameStarted) return;
 	gameStarted = false;
 	gameTimer.stop();
 	clearInterval(int);
@@ -198,7 +215,7 @@ function toggleGame() {
 	}
 }
 
-function isPointCollidedWithEdgeOrSelf(point) {
+function isPointCollidedWithEdgeOrSelf(point, snek) {
 	var lines = edges().concat(snek.segments);
 	for (var i = 0; i < lines.length; i++) {
 		if (isPointTouchingLine(point, lines[i], foodSize))
@@ -207,7 +224,7 @@ function isPointCollidedWithEdgeOrSelf(point) {
 	return false;
 }
 
-function isCollidedWithEdgeOrSelf() {
+function isCollidedWithEdgeOrSelf(snek) {
 	var head = snek.segments[0].start;
 	var lines = edges().concat(snek.segments.slice(1));
 	for (var i = 0; i < lines.length; i++) {
@@ -268,6 +285,7 @@ function showGame() {
 	document.getElementById('getname').style.display = "none";
 	document.getElementById('game').style.display = "block";
 	loadTop15();
+	var snek = sneks[0];
 	document.addEventListener('keydown', function (e) {
 		e = e || window.event;
 		var key = parseInt(e.keyCode);
