@@ -310,7 +310,7 @@ function loadTop15() {
 				lowest_in_top = score.score;
 			markup_buffer.push(`
 				<tr>
-				<td><i> ${nrCount}</i> </td>
+				<td><i> ${nrCount}.</i> </td>
 				<td> ${score.username}  </td>
 				<td> (${score.score}pts) </td>
 				</tr>`);
