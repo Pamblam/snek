@@ -24,7 +24,7 @@ A few minor guidelines for contributing.
 
 I've spent a lot of time managing conflicting PR's from enthusiastic contributors, so from now on, we'll keep only production ready code in the master branch.
 
-Please fork and pull only from the `multiplayer` branch. We will work on making Snek multiplayer for version 2.
+Please fork and pull only from the [`multiplayer`](https://github.com/Pamblam/snek/tree/multiplayer) branch. We will work on making Snek multiplayer for version 2.
 
 ### How to submit a PR
 
