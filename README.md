@@ -4,13 +4,13 @@
 <hr>
 </p>
 
-*version 1*
+*version 2 - Multiplayer*
 
 The old snake game written in JS for Hacktoberfest 2018. I threw this together in a few minutes for the sole purpose of contributing real issues for Hacktoberfest and with the help of many great developers we have managed to turn it into a really cool playable game. 
 
-**Please contribute!** Do anything you want with it (or look at the issues) and submit a PR.
+**Please contribute!** Do anything you want with it keeping in mind the goal of this release is to make the game multiplayer. I'm posting issues for specific things that need to get done to reach this goal, but if you feel like you can make other improvements please do! Please try to make your pull requests meaningful and useful though.
 
-**Play the game here: https://pamblam.github.io/snek/**
+**Play version 1 of the game here: https://pamblam.github.io/snek/**
 
 ### Contributing
 
@@ -24,7 +24,7 @@ A few minor guidelines for contributing.
 
 I've spent a lot of time managing conflicting PR's from enthusiastic contributors, so from now on, we'll keep only production ready code in the master branch.
 
-Please fork and pull only from the `multiplayer` branch. We will work on making Snek multiplayer for version 2.
+Please fork and pull only from the [`multiplayer`](https://github.com/Pamblam/snek/tree/multiplayer) branch. We will work on making Snek multiplayer for version 2.
 
 ### How to submit a PR
 
