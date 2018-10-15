@@ -13,7 +13,7 @@ const fs = require('fs');
 var contributors = {};
 var contrib_arr = [];
 var hasResults = true;
-var page = 2;
+var page = 0;
 
 var auth = octokit.authenticate({
 	type: 'basic',
