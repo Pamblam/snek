@@ -258,8 +258,8 @@ function getPlayerName() {
 		if (player_name.length > 10 || player_name.length < 2) {
 			showModal("Username should be between 2 and 10 chars.");
 		} else {
-			window.location.reload()
 			localStorage.setItem('username', player_name);
+			showGame();
 		}
 	});
 }
@@ -379,10 +379,10 @@ function resizeCanvas() {
 cherryImg.src = 'images/cherries.png';
 snekHead.src = 'images/snek_head.png';
 addEventListener('resize', setCanvasSizeOpts);
-if (!player_name)
-	getPlayerName();
-else 
-	showGame();
+getPlayerName();
+if (player_name) {
+	document.getElementById('username').value = player_name;
+}
 setCanvasSizeOpts();
 
 window.onclick = function(event) {
