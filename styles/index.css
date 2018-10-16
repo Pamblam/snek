@@ -81,6 +81,7 @@ h1 {
     font-family: 'Overpass Mono', monospace;
     font-size: larger;
     font-weight: bold;
+    line-height: 60px;
 }
 
 #game, #getname, .hidden {
