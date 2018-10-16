@@ -1,7 +1,7 @@
 
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-var sneks = [new Snek()];
+var snek = new Snek();
 var int;
 var gameStarted = false;
 var gameover = false;
@@ -12,17 +12,11 @@ var player_name = localStorage.getItem('username');
 var top_score = localStorage.getItem('top_score');
 var lowest_in_top = false;
 var foodSize = 15;
-var snekHeads = {
-	brown: new Image(),
-	red: new Image(),
-	blue: new Image(),
-	yellow: new Image()
-};
+var snekHead = new Image();
 var cherryImg = new Image();
 var modalMessage = '';
 var modal = document.getElementById("modal");
 var span = document.getElementsByClassName("close")[0];
-var game_mode = 'stamina'; // 'longest_wins';
 
 function showModal(message) {
 	addModalMessage(message);
@@ -51,9 +45,7 @@ function newRandomPoint() {
 		x: Math.floor(Math.random() * ((canvas.width - 2) - 2 + 1)) + 2,
 		y: Math.floor(Math.random() * ((canvas.height - 2) - 2 + 1)) + 2
 	};
-	var safe = true;
-	for(var i=0; i<sneks.length; i++){ { if(isPointCollidedWithEdgeOrSelf(point, sneks[i])) safe = false; break; } }
-	return safe ? point : newRandomPoint() ;
+	return isPointCollidedWithEdgeOrSelf(point) ? newRandomPoint() : point;
 }
 
 function setCherryTimer(){
@@ -67,19 +59,13 @@ function setCherryTimer(){
 }
 
 function drawSnek(snek){
-	switch(snek.color){
-		case 'brown': var color = '#795548'; break;
-		case 'red': var color = '#ff0d00'; break;
-		case 'blue': var color = '#312dc5'; break;
-		case 'yellow': var color = '#f5ff00'; break;
-	}
 	for (var i = 0; i < snek.segments.length; i++) {
-		drawCircle(snek.segments[i].end.x, snek.segments[i].end.y, snek.width / 2, color);
+		drawCircle(snek.segments[i].end.x, snek.segments[i].end.y, snek.width / 2);
 		ctx.lineWidth = snek.width;
 		ctx.beginPath();
 		ctx.moveTo(snek.segments[i].start.x, snek.segments[i].start.y);
 		ctx.lineTo(snek.segments[i].end.x, snek.segments[i].end.y);
-		ctx.strokeStyle = color;
+		ctx.strokeStyle = '#795548';
 		ctx.stroke();
 		ctx.lineWidth = 1;
 		ctx.beginPath();
@@ -89,10 +75,10 @@ function drawSnek(snek){
 		ctx.stroke();
 	}
 	switch (snek.segments[0].direction) { // img dims: w = 12, h = 18
-		case 'L': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHeads[snek.color], 90); break;
-		case 'U': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHeads[snek.color], 180); break;
-		case 'R': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHeads[snek.color], 270);break;
-		case 'D': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHeads[snek.color], 0); break;
+		case 'L': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 90); break;
+		case 'U': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 180); break;
+		case 'R': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 270);break;
+		case 'D': drawRotatedImage(snek.segments[0].start.x - 6, snek.segments[0].start.y - 9, snekHead, 0); break;
 	}
 }
 
@@ -100,7 +86,7 @@ function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	if (!food) food = newRandomPoint();
 	if (!cherryTimer && !cherry) setCherryTimer();
-	sneks.forEach(drawSnek);
+	drawSnek(snek);
 	ctx.font = 'bold ' + foodSize + 'px Calibri';
 	ctx.fillText("🎃", food.x, food.y);
 	if(cherry) ctx.drawImage(cherryImg, cherry.x, cherry.y, foodSize+3, foodSize+3);
@@ -115,23 +101,23 @@ function drawRotatedImage(x, y, im, deg) {
 	ctx.restore();
 }
 
-function drawCircle(x, y, rad, color) {
+function drawCircle(x, y, rad) {
 	ctx.beginPath();
 	ctx.arc(x, y, rad, 0, 2 * Math.PI, false);
-	ctx.fillStyle = color;
+	ctx.fillStyle = '#795548';
 	ctx.fill();
 }
 
-function renderSnek(snek, idx){
-	if(gameover) return;
+function mainLoop() {
+	draw();
 	snek.move();
-	if (isCollidedWithEdgeOrSelf(snek)) {
+	if (isCollidedWithEdgeOrSelf()) {
 		gameover = true;
 		document.body.classList.remove('started');
 		document.body.classList.add('finished');
-		gameOver(idx == 0);
+		gameOver();
 		stopGame();
-	} else if (isPointCollidedWithEdgeOrSelf(food, snek)) {
+	} else if (isPointCollidedWithEdgeOrSelf(food)) {
 		food = newRandomPoint();
 		snek.addToTail(10);
 		var len = snek.getLength();
@@ -139,7 +125,7 @@ function renderSnek(snek, idx){
 			speedUp();
 			displayMessage("You got a food. Your score is " + len + " and you got a speed boost...");
 		} else displayMessage("You got a food. Your score is " + len + ".")
-	} else if (cherry && isPointCollidedWithEdgeOrSelf(cherry, snek)) {
+	} else if (cherry && isPointCollidedWithEdgeOrSelf(cherry)) {
 		cherry = false;
 		gameSpeed -= 25;
 		clearInterval(int);
@@ -155,34 +141,10 @@ function renderSnek(snek, idx){
 	}
 }
 
-function mainLoop() {
-	draw();
-	sneks.forEach(renderSnek);
-}
-
-function gameOver(won) {
+function gameOver() {
 	gameTimer.stop();
-	var snek = sneks.reduce((acc,cur)=>{ return acc === false ? cur : cur.getLength() > acc.getLength() ? cur : acc}, false);
-	if(sneks.length === 1){
-		displayMessage('gameover, your score is ' + snek.getLength() + ".");
-	}else{
-		if(game_mode === 'longest_wins'){
-			if(snek.getLength()>sneks[0].getLength()){
-				displayMessage('gameover, you lose.');
-			}else if(snek.getLength()<sneks[0].getLength()){
-				displayMessage('gameover, you win.');
-			}else{
-				displayMessage('gameover, it\'s a tie.');
-			}
-		}else{
-			if(won){
-				displayMessage('gameover, you win.');
-			}else if(snek.getLength()<sneks[0].getLength()){
-				displayMessage('gameover, you lose.');
-			}
-		}
-	}
-	var score = sneks[0].getLength();
+	var score = snek.getLength();
+	displayMessage('gameover, your score is ' + snek.getLength() + ".");
 	document.getElementById("btn-restart").classList.remove("hide");
 	ajax({action: 'addScore', username: player_name, score: score, game: 'snek'}).then(res => {
 		if (top_score && score > top_score) {
@@ -208,27 +170,18 @@ function speedUp() {
 	int = setInterval(mainLoop, gameSpeed);
 }
 
-function startBots(){
-	var botInt = setInterval(()=>{
-		if(gameover) clearInterval(botInt);
-		if(!gameStarted) return;
-		sneks.forEach(snek=>{
-			if(snek.isBot) thinkForBot(snek);
-		});
-	},500);
-}
-
 function startGame() {
-	if (gameStarted || gameover) return;
+	if (gameStarted || gameover)
+		return;
 	gameStarted = true;
-	startBots();
 	document.body.classList.add('started');
 	int = setInterval(mainLoop, gameSpeed);
 	gameTimer.start();
 }
 
 function stopGame() {
-	if (!gameStarted) return;
+	if (!gameStarted)
+		return;
 	gameStarted = false;
 	gameTimer.stop();
 	clearInterval(int);
@@ -245,109 +198,8 @@ function toggleGame() {
 	}
 }
 
-function linesIntersect(line1, line2) {
-	var det, gamma, lambda;
-	det = (line1.end.x - line1.start.x) * (line2.end.y - line2.start.y) - (line2.end.x - line2.start.x) * (line1.end.y - line1.start.y);
-	if (det === 0) return false;
-	else {
-		lambda = ((line2.end.y - line2.start.y) * (line2.end.x - line1.start.x) + (line2.start.x - line2.end.x) * (line2.end.y - line1.start.y)) / det;
-		gamma = ((line1.start.y - line1.end.y) * (line2.end.x - line1.start.x) + (line1.end.x - line1.start.x) * (line2.end.y - line1.start.y)) / det;
-		return (0 < lambda && lambda < 1) && (0 < gamma && gamma < 1);
-	}
-}
-
-function isObstructionWithinNPixels(head, direction, pixels){
-	var lines = allLines();
-	switch(direction){
-		case "U": var path = {start:{x:head.x, y:head.y}, end:{x:head.x, y:head.y-pixels}}; break;
-		case "D": var path = {start:{x:head.x, y:head.y}, end:{x:head.x, y:head.y+pixels}}; break;
-		case "L": var path = {start:{x:head.x, y:head.y}, end:{x:head.x-pixels, y:head.y}}; break;
-		case "R": var path = {start:{x:head.x, y:head.y}, end:{x:head.x+pixels, y:head.y}}; break;
-	}
-	var safe = true;
-	for(var i=0; i<lines.length; i++){
-		if(lines[i].start.x === head.x && lines[i].start.y === head.y) continue;
-		if(linesIntersect(lines[i], path)){
-			safe = false;
-			break;
-		}
-	}
-	return !safe;
-}
-
-function allLines(){
-	var lines = edges();
-	for(var i=0; i<sneks.length; i++){ lines = lines.concat(sneks[i].segments); }
-	return lines;
-}
-
-function getDirectionToward(head, dest, direction, available_directions){
-	var newDir = false;
-	if(direction === 'U' || direction === 'D'){
-		var d = dest.x > head.x ? 'R' : 'L';
-		if(~available_directions.indexOf(d)) newDir = d;
-	}else{
-		var d = dest.x > head.x ? 'D' : 'U';
-		if(~available_directions.indexOf(d)) newDir = d;
-	}
-	return newDir;
-}
-
-function distanceBetweenPoints(p1, p2){
-	var a = p1.x - p2.x;
-	var b = p1.y - p2.y;
-	return Math.sqrt( a*a + b*b );
-}
-
-function thinkForBot(snek){
-	var head = snek.segments[0].start;
-	var direction = snek.segments[0].direction;
-	var available_directions = [];
-	if(direction === 'U' || direction === 'D'){
-		if(!isObstructionWithinNPixels(head, 'L', 30)) available_directions.push('L');
-		if(!isObstructionWithinNPixels(head, 'R', 30)) available_directions.push('R');
-	}else{
-		if(!isObstructionWithinNPixels(head, 'U', 30)) available_directions.push('U');
-		if(!isObstructionWithinNPixels(head, 'D', 30)) available_directions.push('D');
-	}
-	if(isObstructionWithinNPixels(head, direction, 30)){
-		var newDir = false;
-		if(snek.botTarget === 'food'){
-			newDir = getDirectionToward(head, food, direction, available_directions);
-			if(newDir === false && cherry){
-				snek.botTarget === 'cherry';
-				newDir = getDirectionToward(head, cherry, direction, available_directions);
-			}
-		}else{
-			if(cherry) newDir = getDirectionToward(head, food, direction, available_directions);
-			if(newDir === false){
-				snek.botTarget === 'food';
-				newDir = getDirectionToward(head, cherry, direction, available_directions);
-			}
-		}
-		if(newDir) snek.changeDir(newDir);
-	}else{
-		var target, newDir = false;
-		if(!cherry){
-			snek.botTarget === 'food'
-			target = food;
-		}else if(distanceBetweenPoints(head, cherry) < distanceBetweenPoints(head, food)){
-			snek.botTarget === 'cherry'
-			target = cherry;
-		}else{
-			snek.botTarget === 'food'
-			target = food;
-		}
-		if(direction === 'U' && head.y < target.y) newDir = getDirectionToward(head, target, direction, available_directions);
-		else if(direction === 'D' && head.y > target.y) newDir = getDirectionToward(head, target, direction, available_directions);
-		else if(direction === 'L' && head.x < target.x) newDir = getDirectionToward(head, target, direction, available_directions);
-		else if(direction === 'R' && head.x > target.x) newDir = getDirectionToward(head, target, direction, available_directions);
-		if(newDir) snek.changeDir(newDir);
-	}
-}
-
-function isPointCollidedWithEdgeOrSelf(point, snek) {
-	var lines = allLines();
+function isPointCollidedWithEdgeOrSelf(point) {
+	var lines = edges().concat(snek.segments);
 	for (var i = 0; i < lines.length; i++) {
 		if (isPointTouchingLine(point, lines[i], foodSize))
 			return true;
@@ -355,11 +207,10 @@ function isPointCollidedWithEdgeOrSelf(point, snek) {
 	return false;
 }
 
-function isCollidedWithEdgeOrSelf(snek) {
+function isCollidedWithEdgeOrSelf() {
 	var head = snek.segments[0].start;
-	var lines = allLines();
+	var lines = edges().concat(snek.segments.slice(1));
 	for (var i = 0; i < lines.length; i++) {
-		if(lines[i].start.x === head.x && lines[i].start.y === head.y) continue;
 		if (isPointTouchingLine(head, lines[i]))
 			return true;
 	}
@@ -407,8 +258,8 @@ function getPlayerName() {
 		if (player_name.length > 10 || player_name.length < 2) {
 			showModal("Username should be between 2 and 10 chars.");
 		} else {
+			window.location.reload()
 			localStorage.setItem('username', player_name);
-			showGame();
 		}
 	});
 }
@@ -417,7 +268,6 @@ function showGame() {
 	document.getElementById('getname').style.display = "none";
 	document.getElementById('game').style.display = "block";
 	loadTop15();
-	var snek = sneks[0];
 	document.addEventListener('keydown', function (e) {
 		e = e || window.event;
 		var key = parseInt(e.keyCode);
@@ -526,32 +376,17 @@ function resizeCanvas() {
 	canvas.width = w === 'fullscreen' ? innerWidth - 40 : w;
 }
 
-function loadImages(){
-	return new Promise(done=>{
-		var promises = [];
-		promises.push(new Promise(done=>{cherryImg.onload = done}));
-		promises.push(new Promise(done=>{snekHeads.brown.onload = done}));
-		promises.push(new Promise(done=>{snekHeads.red.onload = done}));
-		promises.push(new Promise(done=>{snekHeads.blue.onload = done}));
-		promises.push(new Promise(done=>{snekHeads.yellow.onload = done}));
-		cherryImg.src = 'images/cherries.png';
-		snekHeads.brown.src = 'images/snek_head_brown.png';
-		snekHeads.red.src = 'images/snek_head_red.png';
-		snekHeads.blue.src = 'images/snek_head_blue.png';
-		snekHeads.yellow.src = 'images/snek_head_yellow.png';
-		Promise.all(promises).then(done);
-	});
-}
-
-loadImages().then(done=>{
-	addEventListener('resize', setCanvasSizeOpts);
+cherryImg.src = 'images/cherries.png';
+snekHead.src = 'images/snek_head.png';
+addEventListener('resize', setCanvasSizeOpts);
+if (!player_name)
 	getPlayerName();
-	if (player_name) document.getElementById('username').value = player_name;
-	setCanvasSizeOpts();
-	onclick = function(event) {
-		if (event.target == modal) {
-			modal.style.display = "none";
-		}
-	}
-});
+else 
+	showGame();
+setCanvasSizeOpts();
 
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
