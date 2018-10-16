@@ -24,6 +24,13 @@ var modal = document.getElementById("modal");
 var span = document.getElementsByClassName("close")[0];
 var game_mode = 'stamina'; // 'longest_wins';
 
+// Key Codes for reading user input
+const SPACE = 32;
+const LEFT = 37;
+const UP = 38;
+const RIGHT = 39;
+const DOWN = 40;
+
 function showModal(message) {
 	addModalMessage(message);
 	modal.style.display = "block";
@@ -422,23 +429,23 @@ function showGame() {
 		e = e || window.event;
 		var key = parseInt(e.keyCode);
 		switch (key) {
-			case 38:
+			case UP:
 				snek.changeDir('U');
 				e.preventDefault();
 				break;
-			case 39:
+			case RIGHT:
 				snek.changeDir('R');
 				e.preventDefault();
 				break;
-			case 40:
+			case DOWN:
 				snek.changeDir('D');
 				e.preventDefault();
 				break;
-			case 37:
+			case LEFT:
 				snek.changeDir('L');
 				e.preventDefault();
 				break;
-			case 32:
+			case SPACE:
 				var x = document.activeElement;
 				if (x.id != 'username'){
 					e.preventDefault();
