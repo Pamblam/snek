@@ -72,6 +72,8 @@ h1 {
 }
 
 #out {
+    display: flex;
+    justify-content: center;
     margin: 30px;
     padding: 20px;
     border-radius: 5px;
