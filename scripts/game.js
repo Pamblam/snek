@@ -13,9 +13,9 @@ var gameover = false;
 var gameTimer = new Timer(document.querySelector('.game-timer'));
 var food, cherry, cherryTimer;
 var gameSpeed = 100; // how often the game is redrawn in ms (smaller = faster)
-var player_name = localStorage.getItem('username');
-var top_score = localStorage.getItem('top_score');
-var lowest_in_top = false;
+var playerName = localStorage.getItem('username');
+var topScore = localStorage.getItem('top_score');
+var lowestInTop = false;
 var foodSize = 15;
 var snekHeads = {
 	brown: new Image(),
@@ -24,10 +24,11 @@ var snekHeads = {
 	yellow: new Image()
 };
 var cherryImg = new Image();
+var foodChar = '🍅';
 var modalMessage = '';
 var modal = document.getElementById("modal");
 var span = document.getElementsByClassName("close")[0];
-var game_mode = 'stamina'; // 'longest_wins';
+var gameMode = 'stamina'; // 'longest_wins';
 
 // Key Codes for reading user input
 const SPACE = 32;
@@ -110,12 +111,19 @@ function drawSnek(snek){
 
 function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	if (!food) food = newRandomPoint();
+	if (!food) {
+		if (generateRandomInt(0,10) >= 7) foodChar = '🎃';
+		food = newRandomPoint();
+	}
 	if (!cherryTimer && !cherry) setCherryTimer();
 	sneks.forEach(drawSnek);
 	ctx.font = 'bold ' + foodSize + 'px Calibri';
-	ctx.fillText("🎃", food.x, food.y);
+	ctx.fillText(foodChar, food.x, food.y);
 	if(cherry) ctx.drawImage(cherryImg, cherry.x, cherry.y, foodSize+3, foodSize+3);
+}
+
+function generateRandomInt(min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function drawRotatedImage(x, y, im, deg) {
@@ -178,7 +186,7 @@ function gameOver(won) {
 	if(sneks.length === 1){
 		displayMessage('gameover, your score is ' + snek.getLength() + ".");
 	}else{
-		if(game_mode === 'longest_wins'){
+		if(gameMode === 'longest_wins'){
 			if(snek.getLength()>sneks[0].getLength()){
 				displayMessage('gameover, you lose.');
 			}else if(snek.getLength()<sneks[0].getLength()){
@@ -196,12 +204,12 @@ function gameOver(won) {
 	}
 	var score = sneks[0].getLength();
 	document.getElementById("btn-restart").classList.remove("hide");
-	ajax({action: 'addScore', username: player_name, score: score, game: 'snek'}).then(res => {
-		if (top_score && score > top_score) {
+	ajax({action: 'addScore', username: playerName, score: score, game: 'snek'}).then(res => {
+		if (topScore && score > topScore) {
 			localStorage.getItem('top_score', score);
 			showModal("You beat your personal top score!");
 		}
-		if (score > lowest_in_top) {
+		if (score > lowestInTop) {
 			loadTop15();
 			showModal("You made it into the top 15!");
 		}
@@ -415,11 +423,11 @@ function getPlayerName() {
 	document.getElementById("nameform").addEventListener('submit', function (e) {
 		e.preventDefault();
 		e = e || window.event;
-		player_name = document.getElementById("username").value;
-		if (player_name.length > 10 || player_name.length < 2) {
+		playerName = document.getElementById("username").value;
+		if (playerName.length > 10 || playerName.length < 2) {
 			showModal("Username should be between 2 and 10 chars.");
 		} else {
-			localStorage.setItem('username', player_name);
+			localStorage.setItem('username', playerName);
 			showGame();
 		}
 	});
@@ -464,20 +472,20 @@ function showGame() {
 function loadTop15() {
 	var nrCount = 0;
 	var list = document.getElementById('scores');
-	var markup_buffer = [];
+	var markupBuffer = [];
 	ajax({action: 'getTop', results: 15, game: 'snek'}).then(res => {
 		res.data.forEach(score => {
 			nrCount +=1;
-			if (lowest_in_top === false || lowest_in_top > score.score)
-				lowest_in_top = score.score;
-			markup_buffer.push(`
+			if (lowestInTop === false || lowestInTop > score.score)
+				lowestInTop = score.score;
+			markupBuffer.push(`
 				<tr>
 				<td><i> ${nrCount}</i> </td>
 				<td> ${score.username}  </td>
 				<td> (${score.score}pts) </td>
 				</tr>`);
 		});
-		list.innerHTML = markup_buffer.join('');
+		list.innerHTML = markupBuffer.join('');
 	});
 }
 
@@ -558,7 +566,7 @@ function loadImages(){
 loadImages().then(done=>{
 	addEventListener('resize', setCanvasSizeOpts);
 	getPlayerName();
-	if (player_name) document.getElementById('username').value = player_name;
+	if (playerName) document.getElementById('username').value = playerName;
 	setCanvasSizeOpts();
 	onclick = function(event) {
 		if (event.target == modal) {
