@@ -92,3 +92,4 @@ If you [register for Hacktoberfest](https://hacktoberfest.digitalocean.com/sign_
  - WicoGoHome ([wicogohome](https://github.com/wicogohome))
  - WooodHead ([WooodHead](https://github.com/WooodHead))
  - iojw ([iojw](https://github.com/iojw))
+ - dl471 ([dl471](https://github.com/dl471))
