@@ -75,6 +75,7 @@ h1 {
     margin: 30px;
     padding: 20px;
     border-radius: 5px;
+    line-height: 60px;
     color: #057356;
     background:rgba(255,129,0,0.9);
     text-transform: uppercase;
