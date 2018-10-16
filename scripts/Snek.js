@@ -1,17 +1,12 @@
 
 
 class Snek{
-	constructor(player='live', color='brown'){
+	constructor(){
 		this.length = 40;
 		this.width = 8;
-		this.isBot = player == 'bot';
-		this.botTarget = 'food';
-		this.color = color;
-		var xofst = Math.floor(Math.random() * (250 - 1 + 1)) + 1;
-		var yofst = Math.floor(Math.random() * (50 - 1 + 1)) + 1;
 		this.segments = [
-			new SnekSegment(50+xofst, 50+yofst, 50+xofst, 40+yofst, 'D'),
-			new SnekSegment(50+xofst, 40+yofst, 30+xofst, 40+yofst, 'R'),
+			new SnekSegment(50, 50, 50, 40, 'D'),
+			new SnekSegment(50, 40, 30, 40, 'R'),
 		];
 	}
 	
