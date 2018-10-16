@@ -6,7 +6,7 @@
 
 *version 2 - Multiplayer*
 
-The old snake game written in JS for Hacktoberfest 2018. I threw this together in a few minutes for the sole purpose of contributing real issues for Hacktoberfest and with the help of many great developers we have managed to turn it into a really cool playable game. 
+The old snake game written in JS for Hacktoberfest 2018. I threw this together in a few minutes for the sole purpose of contributing real issues for Hacktoberfest and with the help of many great developers we have managed to turn it into a really cool playable game.
 
 **Please contribute!** Do anything you want with it keeping in mind the goal of this release is to make the game multiplayer. I'm posting issues for specific things that need to get done to reach this goal, but if you feel like you can make other improvements please do! Please try to make your pull requests meaningful and useful though.
 
@@ -98,3 +98,4 @@ If you [register for Hacktoberfest](https://hacktoberfest.digitalocean.com/sign_
  - WicoGoHome ([wicogohome](https://github.com/wicogohome))
  - WooodHead ([WooodHead](https://github.com/WooodHead))
  - Yvonne Kim ([yvonneKim](https://github.com/yvonneKim))
+ - Shiva ([shivakaushal](https://github.com/shivakaushal))
