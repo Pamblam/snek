@@ -88,7 +88,7 @@ function draw() {
 	if (!cherryTimer && !cherry) setCherryTimer();
 	drawSnek(snek);
 	ctx.font = 'bold ' + foodSize + 'px Calibri';
-	ctx.fillText("🎃", food.x, food.y);
+	ctx.fillText(Math.floor(Math.random() * 10) > 7 ? "🎃" : "🍅", food.x, food.y);
 	if(cherry) ctx.drawImage(cherryImg, cherry.x, cherry.y, foodSize+3, foodSize+3);
 }
 
