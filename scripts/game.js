@@ -1,7 +1,12 @@
 
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-var sneks = [new Snek()];
+
+// Example of how to set up a "two player" game against a bot
+//var sneks = [new Snek('live', 'blue'), new Snek('bot', 'red')];
+
+var sneks = [new Snek('live', 'brown')];
+
 var int;
 var gameStarted = false;
 var gameover = false;
