@@ -24,7 +24,7 @@ var snekHeads = {
 	yellow: new Image()
 };
 var cherryImg = new Image();
-var foodChar =  '🍅';
+var foodChar = '🍅';
 var modalMessage = '';
 var modal = document.getElementById("modal");
 var span = document.getElementsByClassName("close")[0];
