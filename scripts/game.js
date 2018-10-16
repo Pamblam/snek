@@ -5,7 +5,7 @@ var ctx = canvas.getContext('2d');
 // Example of how to set up a "two player" game against a bot
 //var sneks = [new Snek('live', 'blue'), new Snek('bot', 'red')];
 
-var sneks = [new Snek('live', 'brown')];
+var sneks = [];
 
 var int;
 var gameStarted = false;
@@ -14,6 +14,7 @@ var gameTimer = new Timer(document.querySelector('.game-timer'));
 var food, cherry, cherryTimer;
 var gameSpeed = 100; // how often the game is redrawn in ms (smaller = faster)
 var playerName = localStorage.getItem('username');
+var playerMode = 'singleplayer';
 var topScore = localStorage.getItem('top_score');
 var lowestInTop = false;
 var foodSize = 15;
@@ -417,13 +418,26 @@ function pointToLineDistance(point, line) {
 	return Math.sqrt(dx * dx + dy * dy);
 }
 
-function getPlayerName() {
+function initPlayer() {
 	document.getElementById('getname').style.display = "block";
 	document.getElementById('game').style.display = "none";
 	document.getElementById("nameform").addEventListener('submit', function (e) {
 		e.preventDefault();
 		e = e || window.event;
-		playerName = document.getElementById("username").value;
+		playerName = document.querySelector("[name='playerName']").value;
+		playerColor = document.querySelector("[name='playerColor']:checked").value;
+		gameMode = document.querySelector("[name='gameMode']:checked").value;
+		playerMode = document.querySelector("[name='playerMode']:checked").value;
+
+		sneks.push(new Snek('live', playerColor));
+		if(playerMode == 'multiplayer') {
+			var availableColors = Object.keys(snekHeads).filter(function(color) {
+				color != playerColor;
+			});
+			var botColor = availableColors[generateRandomInt(0, availableColors.length)];
+			sneks.push(new Snek('bot', botColor));
+		}
+
 		if (playerName.length > 10 || playerName.length < 2) {
 			showModal("Username should be between 2 and 10 chars.");
 		} else {
@@ -565,7 +579,7 @@ function loadImages(){
 
 loadImages().then(done=>{
 	addEventListener('resize', setCanvasSizeOpts);
-	getPlayerName();
+	initPlayer();
 	if (playerName) document.getElementById('username').value = playerName;
 	setCanvasSizeOpts();
 	onclick = function(event) {
