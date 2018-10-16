@@ -24,6 +24,7 @@ var snekHeads = {
 	yellow: new Image()
 };
 var cherryImg = new Image();
+var foodChar =  '🍅';
 var modalMessage = '';
 var modal = document.getElementById("modal");
 var span = document.getElementsByClassName("close")[0];
@@ -117,7 +118,7 @@ function draw() {
 	if (!cherryTimer && !cherry) setCherryTimer();
 	sneks.forEach(drawSnek);
 	ctx.font = 'bold ' + foodSize + 'px Calibri';
-	ctx.fillText("🎃", food.x, food.y);
+	ctx.fillText(foodChar, food.x, food.y);
 	if(cherry) ctx.drawImage(cherryImg, cherry.x, cherry.y, foodSize+3, foodSize+3);
 }
 
