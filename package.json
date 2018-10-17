@@ -12,5 +12,12 @@
   "dependencies": {
     "@octokit/rest": "^15.13.1",
     "delayed-loop": "^1.0.1"
+  },
+  "devDependencies": {
+    "prettier": "^1.14.3"
+  },
+  "prettier": {
+    "useTabs": true,
+    "bracketSpacing": false
   }
 }
