@@ -1,6 +1,6 @@
 <p align="center">
 <img src='https://i.imgur.com/j95GpFY.png' />
-<img src='https://i.imgur.com/NlHNmOp.png' />
+<img src='images/snek.gif' />
 <hr>
 </p>
 
