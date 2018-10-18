@@ -1,6 +1,6 @@
 <p align="center">
 <img src='https://i.imgur.com/j95GpFY.png' />
-<img src='https://i.imgur.com/F8yUR6E.png' />
+<img src='images/snek_demo.gif' />
 <hr>
 </p>
 
@@ -94,6 +94,7 @@ If you [register for Hacktoberfest](https://hacktoberfest.digitalocean.com/sign_
  - Saravanan Ramupillai ([saravanan10393](https://github.com/saravanan10393))
  - Shiva Kaushal ([shivakaushal](https://github.com/shivakaushal))
  - Siang Huang ([sianghuang](https://github.com/sianghuang))
+ - Smrsan ([smrsan76](https://github.com/smrsan76))
  - Steven  ([StevenJW](https://github.com/StevenJW))
  - Sulamita Morales ([kyusulamita](https://github.com/kyusulamita))
  - TiffanieJ ([TiffanieJ](https://github.com/TiffanieJ))
