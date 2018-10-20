@@ -19,9 +19,6 @@
 			<img src="https://i.imgur.com/j95GpFY.png" class="logo" />
 			<div id="game">
 				<p class="subtitle">Spacebar to start. Arrow keys to steer. Eat the tiny tomatoes but don't run into the walls or yourself.</p>
-				<select name="resolution" id="resolution">
-
-				</select><br>
 				<br>
 				<div class="canvas-container">
 					<canvas id="canvas"></canvas>
@@ -77,7 +74,9 @@
 							<input id="longestWins" name="gameMode" type="radio" value="longest_wins">
 							<label for="longestWins">Longest wins</label>
 						</div>
-
+						<p class="subtitle board-size">Select board size.</p>
+						<select name="resolution" id="resolution">
+						</select><br>
 						<p class="subtitle username">Enter your name.</p>
 						<div>
 							<input id="username" name="playerName" placeholder="username" maxlength="10">
