@@ -1,3 +1,4 @@
+
 class Snek {
 	constructor(player = "live", color = "brown") {
 		this.length = 40;

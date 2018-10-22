@@ -1,3 +1,4 @@
+
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var sneks = [];
@@ -12,12 +13,7 @@ var playerMode = "singleplayer";
 var topScore = localStorage.getItem("top_score");
 var lowestInTop = false;
 var foodSize = 15;
-var snekHeads = {
-	brown: new Image(),
-	red: new Image(),
-	blue: new Image(),
-	yellow: new Image()
-};
+var snekHead = new Image();
 var cherryImg = new Image();
 var foodChar = "🍅";
 var modalMessage = "";
@@ -104,7 +100,7 @@ function drawSnek(snek) {
 		ctx.beginPath();
 		ctx.moveTo(snek.segments[i].start.x, snek.segments[i].start.y);
 		ctx.lineTo(snek.segments[i].end.x, snek.segments[i].end.y);
-		ctx.strokeStyle = color;
+		ctx.strokeStyle = '#795548';
 		ctx.stroke();
 		ctx.lineWidth = 1;
 		ctx.beginPath();
@@ -178,23 +174,23 @@ function drawRotatedImage(x, y, im, deg) {
 	ctx.restore();
 }
 
-function drawCircle(x, y, rad, color) {
+function drawCircle(x, y, rad) {
 	ctx.beginPath();
 	ctx.arc(x, y, rad, 0, 2 * Math.PI, false);
-	ctx.fillStyle = color;
+	ctx.fillStyle = '#795548';
 	ctx.fill();
 }
 
 function renderSnek(snek, idx) {
 	if (gameover) return;
 	snek.move();
-	if (isCollidedWithEdgeOrSelf(snek)) {
+	if (isCollidedWithEdgeOrSelf()) {
 		gameover = true;
 		document.body.classList.remove("started");
 		document.body.classList.add("finished");
 		gameOver(idx == 0);
 		stopGame();
-	} else if (isPointCollidedWithEdgeOrSelf(food, snek)) {
+	} else if (isPointCollidedWithEdgeOrSelf(food)) {
 		food = newRandomPoint();
 		snek.addToTail(10);
 		var len = snek.getLength();
@@ -220,12 +216,7 @@ function renderSnek(snek, idx) {
 	}
 }
 
-function mainLoop() {
-	draw();
-	sneks.forEach(renderSnek);
-}
-
-function gameOver(won) {
+function gameOver() {
 	gameTimer.stop();
 	var snek = sneks.reduce((acc, cur) => {
 		return acc === false ? cur : cur.getLength() > acc.getLength() ? cur : acc;
@@ -290,7 +281,8 @@ function startBots() {
 }
 
 function startGame() {
-	if (gameStarted || gameover) return;
+	if (gameStarted || gameover)
+		return;
 	gameStarted = true;
 	startBots();
 	document.body.classList.add("started");
@@ -299,7 +291,8 @@ function startGame() {
 }
 
 function stopGame() {
-	if (!gameStarted) return;
+	if (!gameStarted)
+		return;
 	gameStarted = false;
 	gameTimer.stop();
 	clearInterval(int);
@@ -502,9 +495,9 @@ function isPointCollidedWithEdgeOrSelf(point, snek) {
 	return false;
 }
 
-function isCollidedWithEdgeOrSelf(snek) {
+function isCollidedWithEdgeOrSelf() {
 	var head = snek.segments[0].start;
-	var lines = allLines();
+	var lines = edges().concat(snek.segments.slice(1));
 	for (var i = 0; i < lines.length; i++) {
 		if (lines[i].start.x === head.x && lines[i].start.y === head.y) continue;
 		if (isPointTouchingLine(head, lines[i])) return true;

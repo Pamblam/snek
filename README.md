@@ -4,7 +4,7 @@
 <hr>
 </p>
 
-*version 2 - Multiplayer*
+*version 1*
 
 The old snake game written in JS for Hacktoberfest 2018. I threw the base of this together in a few minutes for the sole purpose of contributing real issues for Hacktoberfest and with the help of many great developers we have managed to turn it into a really cool playable game.
 
@@ -87,4 +87,3 @@ Thank you to everyone who contributed. If I have time to write a socket server f
  - WicoGoHome ([wicogohome](https://github.com/wicogohome))
  - WooodHead ([WooodHead](https://github.com/WooodHead))
  - Yvonne Kim ([yvonneKim](https://github.com/yvonneKim))
-
