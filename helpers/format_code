@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+HERE="`dirname \"$0\"`"
+HERE="`( cd \"$HERE\" && pwd )`"
+ROOT="`( cd .. && pwd )`"
+
+"$ROOT/node_modules/.bin/prettier" --write "$ROOT/scripts/game.js"
+"$ROOT/node_modules/.bin/prettier" --write "$ROOT/scripts/Timer.js"
+"$ROOT/node_modules/.bin/prettier" --write "$ROOT/scripts/Snek.js"
+
+"$ROOT/node_modules/.bin/prettier" --write "$ROOT/styles/index.css"

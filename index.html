@@ -19,9 +19,6 @@
 			<img src="https://i.imgur.com/j95GpFY.png" class="logo" />
 			<div id="game">
 				<p class="subtitle">Spacebar to start. Arrow keys to steer. Eat the tiny tomatoes but don't run into the walls or yourself.</p>
-				<select name="resolution" id="resolution">
-
-				</select><br>
 				<br>
 				<div class="canvas-container">
 					<canvas id="canvas"></canvas>
@@ -47,9 +44,42 @@
 			<div id="getname">
 				<center>
 					<form id="nameform">
-						<p class="subtitle">Enter your name.</p>
+						<p class="subtitle game-mode">Select player mode.</p>
 						<div>
-							<input id="username" placeholder="username" maxlength="10">
+							<input id="singleplayer" name="playerMode" type="radio" value="singleplayer" checked="checked">
+							<label for="singleplayer">Single Player</label>
+							<input id="multiplayer" name="playerMode" type="radio" value="multiplayer">
+							<label for="multiplayer">Multiplayer (vs. bot)</label>
+						</div>
+
+						<p class="subtitle snek-color">Select your snek's color.</p>
+						<div>
+							<input id="red" name="playerColor" type="radio" value="red">
+							<label for="red">Red <img src="images/snek_head_red.png"></label>
+
+							<input id="blue" name="playerColor" type="radio" value="blue">
+							<label for="blue">Blue <img src="images/snek_head_blue.png"></label>
+
+							<input id="yellow" name="playerColor" type="radio" value="yellow">
+							<label for="yellow">Yellow <img src="images/snek_head_yellow.png"></label>
+
+							<input id="brown" name="playerColor" type="radio" value="brown" checked="checked">
+							<label for="brown">Brown <img src="images/snek_head_brown.png"></label>
+						</div>
+
+						<p class="subtitle game-mode">Select game mode.</p>
+						<div>
+							<input id="stamina" name="gameMode" type="radio" value="stamina" checked="checked">
+							<label for="stamina">Stamina</label>
+							<input id="longestWins" name="gameMode" type="radio" value="longest_wins">
+							<label for="longestWins">Longest wins</label>
+						</div>
+						<p class="subtitle board-size">Select board size.</p>
+						<select name="resolution" id="resolution">
+						</select><br>
+						<p class="subtitle username">Enter your name.</p>
+						<div>
+							<input id="username" name="playerName" placeholder="username" maxlength="10">
 							<button id="btn-start" type="submit" >Play</button>
 						</div>
 					</form>

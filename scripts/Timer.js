@@ -1,5 +1,5 @@
-class Timer{
-	constructor(timerElem){
+class Timer {
+	constructor(timerElem) {
 		this.timerElem = timerElem;
 		this.timerId = null;
 		this.minutes = 0;
@@ -7,9 +7,9 @@ class Timer{
 	}
 
 	start() {
-		this.timerId = setInterval(()=>{
+		this.timerId = setInterval(() => {
 			this.seconds++;
-			if(this.seconds === 60) {
+			if (this.seconds === 60) {
 				this.minutes++;
 				this.seconds = 0;
 			}
@@ -18,14 +18,17 @@ class Timer{
 	}
 
 	displayTime() {
-		var timing = `${("0"+this.minutes).slice(-2)} : ${("0"+this.seconds).slice(-2)}`;
-		if(!this.timerElem.classList.contains('show')) this.timerElem.classList.add('show');
-		this.timerElem.classList.remove('hightLight');
+		var timing = `${("0" + this.minutes).slice(-2)} : ${(
+			"0" + this.seconds
+		).slice(-2)}`;
+		if (!this.timerElem.classList.contains("show"))
+			this.timerElem.classList.add("show");
+		this.timerElem.classList.remove("hightLight");
 		this.timerElem.innerHTML = timing;
 	}
 
 	stop() {
-		if(!this.timerId) return;
+		if (!this.timerId) return;
 		clearInterval(this.timerId);
 		this.displayTime();
 	}
